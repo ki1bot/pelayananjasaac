@@ -2,8 +2,8 @@
 
 @section('konten')
     @php
-        $labelGrafik = $grafik->pluck('nama_produk')->values();
-        $dataGrafik = $grafik->pluck('jumlah_pesanan')->values();
+        $labelGrafik = $grafik->pluck('nama')->values();
+        $dataGrafik = $grafik->pluck('harga')->values();
     @endphp
 
     <div id="dataGrafikProduk" class="hidden" data-labels='@json($labelGrafik)' data-values='@json($dataGrafik)'></div>
@@ -18,7 +18,7 @@
                     </div>
 
                     <h2 class="mt-5 text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl">
-                        Service AC cepat, rapi, dan transparan untuk area Jabodetabek.
+                        Service, beli, dan jual AC untuk area Jabodetabek.
                     </h2>
 
                     <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">
@@ -107,10 +107,13 @@
                 <div>
                     <p class="text-sm font-bold text-blue-600">Statistik</p>
                     <h3 class="mt-2 text-xl font-black text-slate-950">Grafik Produk</h3>
+                    <p class="mt-2 text-sm text-slate-500">
+                        Grafik ini diambil langsung dari tabel layanan, bukan dari tabel grafik beranda.
+                    </p>
                 </div>
 
                 <div class="rounded-2xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700">
-                    Jumlah pesanan
+                    Harga dasar
                 </div>
             </div>
 
@@ -122,15 +125,20 @@
         <div class="grid gap-4">
             @foreach($layanan as $item)
                 <div class="kartu rounded-[1.7rem] p-5 transition hover:-translate-y-1 hover:shadow-2xl">
-                    <div class="flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <span class="badge-icon">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <span class="badge-icon shrink-0">
                                 <i data-lucide="{{ $item->icon }}"></i>
                             </span>
 
                             <div>
                                 <h4 class="text-base font-black text-slate-950">{{ $item->nama }}</h4>
-                                <p class="mt-1 text-sm text-slate-500">Mulai Rp {{ number_format($item->harga_dasar, 0, ',', '.') }}</p>
+                                <p class="mt-1 line-clamp-2 text-sm leading-6 text-slate-500">
+                                    {{ $item->deskripsi }}
+                                </p>
+                                <p class="mt-3 text-sm font-bold text-blue-700">
+                                    Mulai Rp {{ number_format($item->harga_dasar, 0, ',', '.') }}
+                                </p>
                             </div>
                         </div>
 

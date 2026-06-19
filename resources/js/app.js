@@ -79,8 +79,8 @@ function jalankanPassword() {
             }
 
             const tampilkanPassword = input.type === "password";
-            input.type = tampilkanPassword ? "text" : "password";
 
+            input.type = tampilkanPassword ? "text" : "password";
             iconBuka.classList.toggle("hidden", tampilkanPassword);
             iconTutup.classList.toggle("hidden", !tampilkanPassword);
         });
@@ -104,7 +104,7 @@ function jalankanGrafikProduk() {
             labels: labels,
             datasets: [
                 {
-                    label: "Jumlah Pesanan",
+                    label: "Harga Dasar",
                     data: values,
                     borderRadius: 14,
                     borderSkipped: false,
@@ -126,6 +126,16 @@ function jalankanGrafikProduk() {
                         useBorderRadius: true,
                     },
                 },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const nilai = Number(
+                                context.raw || 0,
+                            ).toLocaleString("id-ID");
+                            return "Harga Dasar: Rp " + nilai;
+                        },
+                    },
+                },
             },
             scales: {
                 x: {
@@ -135,6 +145,13 @@ function jalankanGrafikProduk() {
                 },
                 y: {
                     beginAtZero: true,
+                    ticks: {
+                        callback: function (value) {
+                            return (
+                                "Rp " + Number(value).toLocaleString("id-ID")
+                            );
+                        },
+                    },
                 },
             },
         },

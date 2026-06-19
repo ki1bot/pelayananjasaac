@@ -10,8 +10,16 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        $layanan = Layanan::where('status', 'aktif')->get();
-        $grafik = GrafikBeranda::orderBy('jumlah_pesanan', 'desc')->get();
+        $layanan = Layanan::where('status', 'aktif')
+            ->orderBy('harga_dasar')
+            ->get();
+
+        $grafik = $layanan->map(function ($item) {
+            return [
+                'nama' => $item->nama,
+                'harga' => $item->harga_dasar,
+            ];
+        });
 
         return view('pages.beranda', compact('layanan', 'grafik'));
     }

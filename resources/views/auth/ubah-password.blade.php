@@ -2,15 +2,21 @@
 
 @section('konten')
     <div class="mx-auto max-w-md">
-        <div class="kartu rounded-3xl p-6">
-            <h2 class="text-2xl font-bold text-slate-950">Ubah Password</h2>
+        <div class="kartu rounded-[2.2rem] p-6 sm:p-8">
+            <div class="text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-50 text-blue-600">
+                    <i data-lucide="key-round"></i>
+                </div>
+                <h2 class="mt-4 text-3xl font-black text-slate-950">Ubah Password</h2>
+                <p class="mt-2 text-sm text-slate-500">Gunakan password baru yang kuat dan mudah kamu ingat.</p>
+            </div>
 
             <form action="{{ route('profil.update-password') }}" method="POST" class="mt-6 space-y-4">
                 @csrf
                 @method('PUT')
 
                 <div>
-                    <label class="text-sm font-semibold">Password Lama</label>
+                    <label class="text-sm font-black text-slate-800">Password Lama</label>
                     <div class="relative mt-2">
                         <input id="password_lama" type="password" name="password_lama" class="input-form pr-12" required>
 
@@ -22,7 +28,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm font-semibold">Password Baru</label>
+                    <label class="text-sm font-black text-slate-800">Password Baru</label>
                     <div class="relative mt-2">
                         <input id="password" type="password" name="password" class="input-form pr-12" required>
 
@@ -34,7 +40,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm font-semibold">Konfirmasi Password Baru</label>
+                    <label class="text-sm font-black text-slate-800">Konfirmasi Password Baru</label>
                     <div class="relative mt-2">
                         <input id="password_confirmation" type="password" name="password_confirmation" class="input-form pr-12" required>
 
@@ -45,7 +51,7 @@
                     </div>
                 </div>
 
-                <button class="w-full rounded-xl tombol-primer px-5 py-3 font-semibold">Simpan Password</button>
+                <button class="w-full rounded-2xl tombol-primer px-5 py-3 font-black">Simpan Password</button>
             </form>
         </div>
     </div>

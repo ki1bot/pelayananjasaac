@@ -14,11 +14,11 @@
 
 :root {
     --warna-latar: #eaeaea;
+    --warna-latar-lembut: #f8fafc;
     --warna-sidebar: #0f172a;
-    --warna-sidebar-dua: #111827;
+    --warna-sidebar-gelap: #020617;
     --warna-primer: #2563eb;
     --warna-primer-gelap: #1d4ed8;
-    --warna-kartu: #ffffff;
     --warna-teks: #0f172a;
     --warna-muted: #64748b;
     --warna-border: rgba(15, 23, 42, 0.08);
@@ -30,32 +30,46 @@ html {
 
 body {
     min-height: 100vh;
-    background: var(--warna-latar);
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.08),
+            transparent 34rem
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(15, 23, 42, 0.08),
+            transparent 32rem
+        ),
+        var(--warna-latar);
     color: var(--warna-teks);
 }
 
 .sidebar {
-    transform: translateX(-100%);
-    transition: transform 280ms ease;
-    background: linear-gradient(
-        180deg,
-        var(--warna-sidebar),
-        var(--warna-sidebar-dua)
-    );
+    transform: translateX(-110%);
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.24),
+            transparent 18rem
+        ),
+        linear-gradient(
+            180deg,
+            var(--warna-sidebar),
+            var(--warna-sidebar-gelap)
+        );
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
 }
 
 .sidebar.sidebar-aktif {
     transform: translateX(0);
 }
 
-.konten-aplikasi {
-    min-height: 100vh;
-}
-
 .overlay-sidebar {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 220ms ease;
+    transition: opacity 260ms ease;
 }
 
 .overlay-sidebar.overlay-aktif {
@@ -63,72 +77,95 @@ body {
     pointer-events: auto;
 }
 
+.konten-aplikasi {
+    min-height: 100vh;
+    transition: padding-left 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .kartu {
-    background: var(--warna-kartu);
+    background: rgba(255, 255, 255, 0.88);
     border: 1px solid var(--warna-border);
-    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.kartu-gelap {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(37, 99, 235, 0.38),
+            transparent 12rem
+        ),
+        linear-gradient(145deg, #020617, #0f172a);
+    color: white;
 }
 
 .tombol-primer {
-    background: var(--warna-primer);
+    background: linear-gradient(
+        135deg,
+        var(--warna-primer),
+        var(--warna-primer-gelap)
+    );
     color: white;
     transition:
-        background 180ms ease,
         transform 180ms ease,
-        box-shadow 180ms ease;
+        box-shadow 180ms ease,
+        filter 180ms ease;
 }
 
 .tombol-primer:hover {
-    background: var(--warna-primer-gelap);
-    transform: translateY(-1px);
-    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
+    filter: brightness(1.02);
 }
 
 .tombol-outline {
-    border: 1px solid rgba(15, 23, 42, 0.16);
-    background: white;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.9);
     color: var(--warna-teks);
     transition:
+        transform 180ms ease,
         border-color 180ms ease,
-        background 180ms ease,
-        transform 180ms ease;
+        background 180ms ease;
 }
 
 .tombol-outline:hover {
-    border-color: var(--warna-primer);
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.45);
     background: rgba(37, 99, 235, 0.04);
-    transform: translateY(-1px);
 }
 
 .nav-link {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-radius: 16px;
-    padding: 12px 14px;
-    color: rgba(255, 255, 255, 0.72);
+    border-radius: 18px;
+    padding: 13px 14px;
+    color: rgba(255, 255, 255, 0.7);
     transition:
         background 180ms ease,
         color 180ms ease,
-        transform 180ms ease;
+        transform 180ms ease,
+        border-color 180ms ease;
 }
 
 .nav-link:hover {
     background: rgba(255, 255, 255, 0.08);
     color: white;
-    transform: translateX(2px);
+    transform: translateX(4px);
 }
 
 .nav-link-aktif {
-    background: rgba(37, 99, 235, 0.22);
+    background: rgba(37, 99, 235, 0.24);
     color: white;
-    border: 1px solid rgba(96, 165, 250, 0.28);
+    border: 1px solid rgba(96, 165, 250, 0.34);
 }
 
 .badge-icon {
     display: flex;
-    height: 46px;
-    width: 46px;
+    height: 48px;
+    width: 48px;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     border-radius: 18px;
@@ -138,19 +175,46 @@ body {
 
 .input-form {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 18px;
     border: 1px solid rgba(15, 23, 42, 0.14);
-    background: white;
-    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 13px 16px;
     outline: none;
     transition:
         border-color 180ms ease,
-        box-shadow 180ms ease;
+        box-shadow 180ms ease,
+        background 180ms ease;
 }
 
 .input-form:focus {
     border-color: var(--warna-primer);
+    background: white;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.select-form {
+    width: 100%;
+    border-radius: 18px;
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    padding: 13px 16px;
+    outline: none;
+}
+
+.animasi-masuk {
+    animation: masukHalus 420ms ease both;
+}
+
+@keyframes masukHalus {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (min-width: 1024px) {
@@ -158,8 +222,16 @@ body {
         transform: translateX(0);
     }
 
+    .sidebar.sidebar-tertutup {
+        transform: translateX(-110%);
+    }
+
     .konten-aplikasi {
         padding-left: 18rem;
+    }
+
+    .konten-aplikasi.konten-sidebar-tertutup {
+        padding-left: 0;
     }
 
     .overlay-sidebar {

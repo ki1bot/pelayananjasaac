@@ -15,6 +15,7 @@ class Pengguna extends Authenticatable
         'nama',
         'email',
         'password',
+        'role',
         'provider',
         'provider_id',
         'avatar',
@@ -24,4 +25,9 @@ class Pengguna extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 }

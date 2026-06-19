@@ -1,6 +1,20 @@
-<footer class="border-t border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
-        <p class="font-semibold text-slate-700">Pelayanan Jasa AC Bekasi</p>
-        <p>© {{ date('Y') }} Melayani Bekasi, Jakarta, Bogor, dan Tangerang.</p>
+<footer class="border-t border-slate-200 bg-white/80 backdrop-blur-xl">
+    <div class="mx-auto grid max-w-7xl gap-5 px-4 py-8 text-sm text-slate-500 sm:px-6 md:grid-cols-3 lg:px-8">
+        <div>
+            <p class="text-base font-black text-slate-900">Pelayanan Jasa AC Bekasi</p>
+            <p class="mt-2 leading-6">
+                Service, beli, dan jual AC untuk area Bekasi, Jakarta, Bogor, dan Tangerang.
+            </p>
+        </div>
+
+        <div>
+            <p class="font-bold text-slate-800">Area Layanan</p>
+            <p class="mt-2 leading-6">Bekasi, Jakarta, Bogor, Tangerang</p>
+        </div>
+
+        <div class="md:text-right">
+            <p class="font-bold text-slate-800">© {{ date('Y') }} Jasa AC Bekasi</p>
+            <p class="mt-2 leading-6">Harga mengikuti lokasi dan jenis layanan.</p>
+        </div>
     </div>
 </footer>

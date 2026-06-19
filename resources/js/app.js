@@ -12,28 +12,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function jalankanSidebar() {
     const sidebar = document.getElementById("sidebar");
+    const konten = document.getElementById("kontenAplikasi");
     const overlay = document.querySelector("[data-sidebar-overlay]");
     const tombolSidebar = document.querySelectorAll("[data-sidebar-toggle]");
+    const linkSidebar = document.querySelectorAll("[data-sidebar-link]");
 
-    if (!sidebar || !overlay || tombolSidebar.length === 0) {
+    if (!sidebar || !konten || !overlay || tombolSidebar.length === 0) {
         return;
     }
 
+    const isMobile = () => window.innerWidth < 1024;
+
+    const bukaSidebarMobile = () => {
+        sidebar.classList.add("sidebar-aktif");
+        overlay.classList.add("overlay-aktif");
+        document.body.classList.add("overflow-hidden");
+    };
+
+    const tutupSidebarMobile = () => {
+        sidebar.classList.remove("sidebar-aktif");
+        overlay.classList.remove("overlay-aktif");
+        document.body.classList.remove("overflow-hidden");
+    };
+
+    const toggleSidebarDesktop = () => {
+        sidebar.classList.toggle("sidebar-tertutup");
+        konten.classList.toggle("konten-sidebar-tertutup");
+    };
+
     tombolSidebar.forEach((tombol) => {
         tombol.addEventListener("click", () => {
-            sidebar.classList.toggle("sidebar-aktif");
-            overlay.classList.toggle("overlay-aktif");
+            if (isMobile()) {
+                if (sidebar.classList.contains("sidebar-aktif")) {
+                    tutupSidebarMobile();
+                } else {
+                    bukaSidebarMobile();
+                }
+
+                return;
+            }
+
+            toggleSidebarDesktop();
         });
     });
 
-    overlay.addEventListener("click", () => {
-        sidebar.classList.remove("sidebar-aktif");
-        overlay.classList.remove("overlay-aktif");
+    overlay.addEventListener("click", tutupSidebarMobile);
+
+    linkSidebar.forEach((link) => {
+        link.addEventListener("click", () => {
+            if (isMobile()) {
+                tutupSidebarMobile();
+            }
+        });
     });
 
     window.addEventListener("resize", () => {
-        if (window.innerWidth >= 1024) {
+        if (!isMobile()) {
+            sidebar.classList.remove("sidebar-aktif");
             overlay.classList.remove("overlay-aktif");
+            document.body.classList.remove("overflow-hidden");
         }
     });
 }
@@ -106,10 +143,10 @@ function jalankanGrafikProduk() {
                 {
                     label: "Harga Dasar",
                     data: values,
-                    borderRadius: 14,
+                    borderRadius: 16,
                     borderSkipped: false,
-                    backgroundColor: "rgba(59, 130, 246, 0.45)",
-                    borderColor: "rgba(37, 99, 235, 0.7)",
+                    backgroundColor: "rgba(37, 99, 235, 0.42)",
+                    borderColor: "rgba(37, 99, 235, 0.75)",
                     borderWidth: 1,
                 },
             ],
@@ -141,6 +178,11 @@ function jalankanGrafikProduk() {
                 x: {
                     grid: {
                         display: false,
+                    },
+                    ticks: {
+                        font: {
+                            weight: 600,
+                        },
                     },
                 },
                 y: {

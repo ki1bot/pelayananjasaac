@@ -9,31 +9,33 @@
 <body class="font-sans">
     @include('partials.sidebar')
 
-    <div class="konten-aplikasi">
+    <div id="kontenAplikasi" class="konten-aplikasi">
         @include('partials.navbar')
 
         <main class="mx-auto min-h-[calc(100vh-10rem)] max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             @if(session('success'))
-                <div class="mb-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
+                <div class="animasi-masuk mb-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
                     {{ session('success') }}
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+                <div class="animasi-masuk mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
                     {{ session('error') }}
                 </div>
             @endif
 
             @if($errors->any())
-                <div class="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <div class="animasi-masuk mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                     @foreach($errors->all() as $error)
                         <p>{{ $error }}</p>
                     @endforeach
                 </div>
             @endif
 
-            @yield('konten')
+            <div class="animasi-masuk">
+                @yield('konten')
+            </div>
         </main>
 
         @include('partials.footer')

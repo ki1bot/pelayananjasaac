@@ -2,19 +2,25 @@
 
 @section('konten')
     <div class="mx-auto max-w-md">
-        <div class="kartu rounded-3xl p-6">
-            <h2 class="text-2xl font-bold text-slate-950">Login</h2>
+        <div class="kartu rounded-[2.2rem] p-6 sm:p-8">
+            <div class="text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-50 text-blue-600">
+                    <i data-lucide="log-in"></i>
+                </div>
+                <h2 class="mt-4 text-3xl font-black text-slate-950">Login</h2>
+                <p class="mt-2 text-sm text-slate-500">Masuk untuk melanjutkan pembayaran dan mengelola akun.</p>
+            </div>
 
             <form action="{{ route('login.store') }}" method="POST" class="mt-6 space-y-4">
                 @csrf
 
                 <div>
-                    <label class="text-sm font-semibold">Email</label>
+                    <label class="text-sm font-black text-slate-800">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" class="input-form mt-2" required>
                 </div>
 
                 <div>
-                    <label class="text-sm font-semibold">Password</label>
+                    <label class="text-sm font-black text-slate-800">Password</label>
                     <div class="relative mt-2">
                         <input id="password" type="password" name="password" class="input-form pr-12" required>
 
@@ -25,22 +31,22 @@
                     </div>
                 </div>
 
-                <button class="w-full rounded-xl tombol-primer px-5 py-3 font-semibold">Login</button>
+                <button class="w-full rounded-2xl tombol-primer px-5 py-3 font-black">Login</button>
             </form>
 
             <div class="mt-5 grid gap-3">
-                <a href="{{ route('sosial.redirect', 'google') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">
+                <a href="{{ route('sosial.redirect', 'google') }}" class="rounded-2xl tombol-outline px-5 py-3 text-center font-black">
                     Login dengan Google
                 </a>
 
-                <a href="{{ route('sosial.redirect', 'facebook') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">
+                <a href="{{ route('sosial.redirect', 'facebook') }}" class="rounded-2xl tombol-outline px-5 py-3 text-center font-black">
                     Login dengan Facebook
                 </a>
             </div>
 
             <p class="mt-5 text-center text-sm text-slate-600">
                 Belum punya akun?
-                <a href="{{ route('registrasi') }}" class="font-semibold text-blue-600">Registrasi</a>
+                <a href="{{ route('registrasi') }}" class="font-black text-blue-600">Registrasi</a>
             </p>
         </div>
     </div>

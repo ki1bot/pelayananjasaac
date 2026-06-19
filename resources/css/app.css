@@ -13,15 +13,25 @@
 }
 
 :root {
-    --warna-latar: #eaeaea;
-    --warna-kartu: rgba(255, 255, 255, 0.88);
-    --warna-sidebar: #0f172a;
-    --warna-sidebar-gelap: #020617;
-    --warna-primer: #2563eb;
-    --warna-primer-gelap: #1d4ed8;
-    --warna-teks: #0f172a;
-    --warna-muted: #64748b;
-    --warna-border: rgba(15, 23, 42, 0.1);
+    --latar-utama: #eef2f7;
+    --latar-kedua: #f8fafc;
+    --putih-kaca: rgba(255, 255, 255, 0.78);
+    --putih-solid: #ffffff;
+    --sidebar-atas: #111c36;
+    --sidebar-bawah: #020617;
+    --biru: #2563eb;
+    --biru-gelap: #1d4ed8;
+    --biru-muda: #dbeafe;
+    --teks: #0f172a;
+    --teks-lembut: #64748b;
+    --border: rgba(15, 23, 42, 0.1);
+    --shadow-lembut: 0 24px 70px rgba(15, 23, 42, 0.1);
+    --shadow-tebal: 0 32px 90px rgba(15, 23, 42, 0.16);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(37, 99, 235, 0.45) rgba(226, 232, 240, 0.7);
 }
 
 html {
@@ -30,46 +40,83 @@ html {
 
 body {
     min-height: 100vh;
+    color: var(--teks);
     background:
         radial-gradient(
-            circle at 10% 5%,
-            rgba(37, 99, 235, 0.12),
-            transparent 28rem
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(14, 165, 233, 0.08),
+            circle at 20% 4%,
+            rgba(37, 99, 235, 0.16),
             transparent 24rem
         ),
         radial-gradient(
-            circle at 70% 100%,
-            rgba(15, 23, 42, 0.08),
-            transparent 30rem
+            circle at 88% 18%,
+            rgba(14, 165, 233, 0.12),
+            transparent 26rem
         ),
-        var(--warna-latar);
-    color: var(--warna-teks);
+        radial-gradient(
+            circle at 78% 100%,
+            rgba(15, 23, 42, 0.08),
+            transparent 28rem
+        ),
+        linear-gradient(135deg, #eef2f7 0%, #f8fafc 45%, #e8eef7 100%);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 100px;
+    right: -120px;
+    width: 360px;
+    height: 360px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.12);
+    filter: blur(70px);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .sidebar {
     transform: translateX(-110%);
     background:
         radial-gradient(
-            circle at top left,
-            rgba(37, 99, 235, 0.34),
-            transparent 18rem
+            circle at 25% 8%,
+            rgba(37, 99, 235, 0.42),
+            transparent 15rem
         ),
         radial-gradient(
-            circle at bottom right,
-            rgba(14, 165, 233, 0.16),
-            transparent 18rem
+            circle at 90% 70%,
+            rgba(14, 165, 233, 0.18),
+            transparent 14rem
         ),
-        linear-gradient(
-            180deg,
-            var(--warna-sidebar),
-            var(--warna-sidebar-gelap)
-        );
-    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+        linear-gradient(180deg, var(--sidebar-atas), var(--sidebar-bawah));
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
+    box-shadow: 24px 0 80px rgba(2, 6, 23, 0.2);
+}
+
+.sidebar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 34px 34px;
+    pointer-events: none;
+    opacity: 0.45;
 }
 
 .sidebar.sidebar-aktif {
@@ -79,7 +126,7 @@ body {
 .overlay-sidebar {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 260ms ease;
+    transition: opacity 280ms ease;
 }
 
 .overlay-sidebar.overlay-aktif {
@@ -89,40 +136,67 @@ body {
 
 .konten-aplikasi {
     min-height: 100vh;
-    transition: padding-left 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: padding-left 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .kartu {
-    background: var(--warna-kartu);
-    border: 1px solid var(--warna-border);
-    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
-    backdrop-filter: blur(18px);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.7)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: var(--shadow-lembut);
+    backdrop-filter: blur(22px);
+}
+
+.kartu-hover {
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        border-color 220ms ease;
+}
+
+.kartu-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-tebal);
+    border-color: rgba(37, 99, 235, 0.22);
 }
 
 .kartu-gelap {
+    position: relative;
+    overflow: hidden;
+    color: white;
     background:
         radial-gradient(
             circle at top right,
-            rgba(37, 99, 235, 0.45),
-            transparent 13rem
+            rgba(37, 99, 235, 0.6),
+            transparent 14rem
         ),
         radial-gradient(
             circle at bottom left,
-            rgba(14, 165, 233, 0.16),
-            transparent 14rem
+            rgba(14, 165, 233, 0.22),
+            transparent 15rem
         ),
-        linear-gradient(145deg, #020617, #0f172a);
-    color: white;
-    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+        linear-gradient(145deg, #020617, #0f172a 55%, #111827);
+    box-shadow: 0 30px 90px rgba(15, 23, 42, 0.32);
+}
+
+.kartu-gelap::after {
+    content: "";
+    position: absolute;
+    inset: auto -40px -70px auto;
+    width: 190px;
+    height: 190px;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.18);
+    filter: blur(35px);
 }
 
 .tombol-primer {
-    background: linear-gradient(
-        135deg,
-        var(--warna-primer),
-        var(--warna-primer-gelap)
-    );
+    background: linear-gradient(135deg, #3b82f6, #2563eb 45%, #1d4ed8);
     color: white;
+    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
     transition:
         transform 180ms ease,
         box-shadow 180ms ease,
@@ -131,29 +205,32 @@ body {
 
 .tombol-primer:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.28);
-    filter: brightness(1.03);
+    box-shadow: 0 20px 44px rgba(37, 99, 235, 0.32);
+    filter: brightness(1.04);
 }
 
 .tombol-outline {
     border: 1px solid rgba(15, 23, 42, 0.12);
-    background: rgba(255, 255, 255, 0.92);
-    color: var(--warna-teks);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--teks);
     transition:
         transform 180ms ease,
         border-color 180ms ease,
         background 180ms ease,
-        color 180ms ease;
+        color 180ms ease,
+        box-shadow 180ms ease;
 }
 
 .tombol-outline:hover {
     transform: translateY(-2px);
-    border-color: rgba(37, 99, 235, 0.42);
-    background: rgba(37, 99, 235, 0.05);
-    color: var(--warna-primer);
+    border-color: rgba(37, 99, 235, 0.4);
+    background: rgba(37, 99, 235, 0.06);
+    color: var(--biru);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
 
 .nav-link {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -174,21 +251,43 @@ body {
 }
 
 .nav-link-aktif {
-    background: rgba(37, 99, 235, 0.26);
+    background: linear-gradient(
+        135deg,
+        rgba(37, 99, 235, 0.34),
+        rgba(14, 165, 233, 0.16)
+    );
     color: white;
-    border: 1px solid rgba(147, 197, 253, 0.36);
+    border: 1px solid rgba(147, 197, 253, 0.38);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.nav-link-aktif::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    width: 4px;
+    height: 24px;
+    border-radius: 999px;
+    background: #60a5fa;
 }
 
 .badge-icon {
     display: flex;
-    height: 48px;
-    width: 48px;
+    height: 50px;
+    width: 50px;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;
-    background: rgba(37, 99, 235, 0.12);
-    color: var(--warna-primer);
+    border-radius: 20px;
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(255, 255, 255, 0.8),
+            transparent 1.7rem
+        ),
+        rgba(37, 99, 235, 0.12);
+    color: var(--biru);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .input-form,
@@ -196,22 +295,24 @@ body {
 .textarea-form {
     width: 100%;
     border-radius: 18px;
-    border: 1px solid rgba(15, 23, 42, 0.14);
-    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(255, 255, 255, 0.9);
     padding: 13px 16px;
     outline: none;
+    color: var(--teks);
     transition:
         border-color 180ms ease,
         box-shadow 180ms ease,
-        background 180ms ease;
+        background 180ms ease,
+        transform 180ms ease;
 }
 
 .input-form:focus,
 .select-form:focus,
 .textarea-form:focus {
-    border-color: var(--warna-primer);
+    border-color: var(--biru);
     background: white;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.12);
 }
 
 .label-form {
@@ -225,9 +326,10 @@ body {
     display: inline-flex;
     align-items: center;
     border-radius: 9999px;
-    padding: 6px 12px;
-    font-size: 0.75rem;
+    padding: 7px 12px;
+    font-size: 0.72rem;
     font-weight: 900;
+    letter-spacing: 0.02em;
 }
 
 .status-draft {
@@ -255,14 +357,81 @@ body {
     color: #b91c1c;
 }
 
+.hero-ornamen {
+    position: absolute;
+    inset: auto -90px -120px auto;
+    width: 320px;
+    height: 320px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.11);
+    filter: blur(55px);
+    pointer-events: none;
+}
+
+.halaman-auth {
+    min-height: calc(100vh - 12rem);
+    display: grid;
+    place-items: center;
+}
+
+.auth-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-panel::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 210px;
+    height: 210px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.12);
+    filter: blur(36px);
+}
+
+.auth-panel::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 210px;
+    height: 210px;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.1);
+    filter: blur(36px);
+}
+
+.auth-panel > * {
+    position: relative;
+    z-index: 1;
+}
+
 .animasi-masuk {
-    animation: masukHalus 420ms ease both;
+    animation: masukHalus 460ms ease both;
+}
+
+.animasi-naik {
+    animation: naikHalus 560ms ease both;
 }
 
 @keyframes masukHalus {
     from {
         opacity: 0;
-        transform: translateY(14px);
+        transform: translateY(14px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes naikHalus {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
     }
 
     to {

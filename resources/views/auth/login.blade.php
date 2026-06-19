@@ -1,14 +1,17 @@
 @extends('layouts.aplikasi', ['judul' => 'Login'])
 
 @section('konten')
-    <div class="mx-auto max-w-md">
-        <div class="kartu rounded-[2.2rem] p-6 sm:p-8">
+    <div class="halaman-auth">
+        <div class="auth-panel kartu w-full max-w-md rounded-[2.4rem] p-6 sm:p-8">
             <div class="text-center">
-                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-50 text-blue-600">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-50 text-blue-600 shadow-inner">
                     <i data-lucide="log-in"></i>
                 </div>
+
                 <h2 class="mt-4 text-3xl font-black text-slate-950">Login</h2>
-                <p class="mt-2 text-sm text-slate-500">Masuk untuk membuat pesanan dan melihat status layanan.</p>
+                <p class="mt-2 text-sm leading-6 text-slate-500">
+                    Masuk untuk membuat pesanan dan melihat status layanan.
+                </p>
             </div>
 
             <form action="{{ route('login.store') }}" method="POST" class="mt-6 space-y-4">

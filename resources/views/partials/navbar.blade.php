@@ -1,35 +1,36 @@
-<header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur-2xl">
+<header class="sticky top-0 z-30 border-b border-white/60 bg-white/72 backdrop-blur-2xl">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-4">
-            <button type="button" data-sidebar-toggle class="rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 hover:shadow-md">
+            <button type="button" data-sidebar-toggle class="rounded-2xl border border-slate-200/80 bg-white/85 p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 hover:shadow-md">
                 <i data-lucide="menu"></i>
             </button>
 
             <div>
-                <p class="text-xs font-semibold text-slate-500">Pusat toko: Bekasi</p>
+                <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Pusat toko: Bekasi</p>
                 <h1 class="text-lg font-black text-slate-950">{{ $judul ?? 'Pelayanan Jasa AC' }}</h1>
             </div>
         </div>
 
         <div class="flex items-center gap-3">
             @auth
-                <a href="{{ route('pesanan.index') }}" class="hidden rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
-                    <i data-lucide="clipboard-list"></i>
+                <a href="{{ route('pesanan.index') }}" class="hidden items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-sm font-black text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
+                    <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+                    <span>Pesanan</span>
                 </a>
             @else
-                <a href="{{ route('login') }}" class="hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
+                <a href="{{ route('login') }}" class="hidden rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-sm font-black text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
                     Login
                 </a>
             @endauth
 
             <div class="relative">
                 @auth
-                    <button type="button" data-profile-toggle class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-white shadow-xl shadow-slate-900/20 transition hover:scale-105">
+                    <button type="button" data-profile-toggle class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-white shadow-xl shadow-slate-900/20 ring-4 ring-white/70 transition hover:scale-105">
                         <i data-lucide="user"></i>
                     </button>
 
-                    <div data-profile-menu class="absolute right-0 mt-3 hidden w-72 rounded-[1.7rem] border border-slate-200 bg-white p-3 shadow-2xl">
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
+                    <div data-profile-menu class="absolute right-0 mt-3 hidden w-72 rounded-[1.7rem] border border-white/70 bg-white/90 p-3 shadow-2xl backdrop-blur-2xl">
+                        <div class="rounded-2xl bg-slate-50/90 px-4 py-3">
                             <p class="text-sm font-black text-slate-950">{{ auth()->user()->nama }}</p>
                             <p class="mt-1 truncate text-xs text-slate-500">{{ auth()->user()->email }}</p>
 
@@ -52,7 +53,7 @@
                         </form>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-white shadow-xl shadow-slate-900/20 transition hover:scale-105">
+                    <a href="{{ route('login') }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-white shadow-xl shadow-slate-900/20 ring-4 ring-white/70 transition hover:scale-105">
                         <i data-lucide="user"></i>
                     </a>
                 @endauth

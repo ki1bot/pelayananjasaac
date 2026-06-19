@@ -2,16 +2,22 @@
 
 @section('konten')
     <section class="mb-6 grid gap-5 lg:grid-cols-[1.4fr_0.6fr]">
-        <div class="kartu rounded-[2.2rem] p-6 sm:p-8">
-            <p class="text-sm font-black text-blue-600">Daftar Layanan</p>
-            <h2 class="mt-2 text-3xl font-black text-slate-950">Pilih layanan sesuai kebutuhan pelanggan.</h2>
-            <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
-                Setiap layanan memiliki tarif jarak sendiri. Harga akhir dihitung dari harga dasar layanan ditambah tarif jarak berdasarkan lokasi tujuan.
-            </p>
+        <div class="kartu relative overflow-hidden rounded-[2.4rem] p-6 sm:p-8">
+            <div class="hero-ornamen"></div>
+
+            <div class="relative">
+                <p class="text-sm font-black text-blue-600">Daftar Layanan</p>
+                <h2 class="mt-2 max-w-3xl text-4xl font-black leading-tight text-slate-950">
+                    Pilih layanan AC sesuai kebutuhan pelanggan.
+                </h2>
+                <p class="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
+                    Setiap layanan memiliki tarif jarak sendiri. Harga akhir dihitung dari harga dasar layanan ditambah tarif jarak berdasarkan lokasi tujuan.
+                </p>
+            </div>
         </div>
 
-        <div class="kartu-gelap rounded-[2.2rem] p-6">
-            <div class="flex items-center gap-4">
+        <div class="kartu-gelap rounded-[2.4rem] p-6">
+            <div class="relative z-10 flex items-center gap-4">
                 <span class="flex h-14 w-14 items-center justify-center rounded-3xl bg-blue-600">
                     <i data-lucide="map-pin"></i>
                 </span>
@@ -22,15 +28,15 @@
                 </div>
             </div>
 
-            <p class="mt-4 text-sm leading-6 text-white/60">
-                Tarif jarak berbeda untuk Cuci AC, Service AC, Isi Freon, Bongkar Pasang AC, Beli AC, dan Jual AC.
+            <p class="relative z-10 mt-4 text-sm leading-6 text-white/60">
+                Tarif jarak berbeda untuk setiap layanan dan lokasi.
             </p>
         </div>
     </section>
 
     <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         @foreach($layanan as $item)
-            <form action="{{ route('pesanan.store') }}" method="POST" class="kartu rounded-[2rem] p-6 transition duration-200 hover:-translate-y-1 hover:shadow-2xl">
+            <form action="{{ route('pesanan.store') }}" method="POST" class="kartu kartu-hover rounded-[2rem] p-6">
                 @csrf
 
                 <input type="hidden" name="layanan_id" value="{{ $item->id }}">

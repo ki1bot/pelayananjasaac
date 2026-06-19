@@ -10,7 +10,7 @@ class BuatAdmin extends Command
 {
     protected $signature = 'admin:buat';
 
-    protected $description = 'Membuat atau memperbarui akun admin';
+    protected $description = 'Membuat atau memperbarui akun admin di database MySQL';
 
     public function handle(): int
     {
@@ -42,7 +42,7 @@ class BuatAdmin extends Command
             ]
         );
 
-        $this->info('Akun admin berhasil disimpan.');
+        $this->info('Akun admin berhasil disimpan ke MySQL.');
         $this->line('Email: '.$email);
 
         return self::SUCCESS;

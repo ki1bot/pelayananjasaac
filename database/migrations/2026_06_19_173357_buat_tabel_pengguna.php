@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('pengguna', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('provider')->nullable();
+            $table->string('nama', 120);
+            $table->string('email', 160)->unique();
+            $table->string('password')->nullable();
+            $table->string('role', 30)->default('pelanggan');
+            $table->string('provider', 50)->nullable();
             $table->string('provider_id')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();

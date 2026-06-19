@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class WajibAdmin
@@ -19,7 +20,7 @@ class WajibAdmin
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        if (! Auth::user()->isAdmin()) {
+        if (Auth::user()->role !== 'admin') {
             abort(403);
         }
 

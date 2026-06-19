@@ -4,7 +4,9 @@
     <section class="mb-6 rounded-[2.2rem] kartu p-6 sm:p-8">
         <p class="text-sm font-black text-blue-600">{{ $pesanan->kode_pesanan }}</p>
         <h2 class="mt-2 text-3xl font-black text-slate-950">Pembayaran Pesanan</h2>
-        <p class="mt-2 text-sm leading-7 text-slate-600">Setelah pembayaran dibuat, pesanan masuk status sedang ditinjau dan tidak bisa diubah oleh pelanggan.</p>
+        <p class="mt-2 text-sm leading-7 text-slate-600">
+            Setelah pembayaran dibuat, pesanan masuk status sedang ditinjau dan tidak bisa diubah oleh pelanggan.
+        </p>
     </section>
 
     <div class="grid gap-6 lg:grid-cols-[1fr_22rem]">
@@ -16,13 +18,20 @@
 
                 @foreach($metode as $item)
                     <label class="flex cursor-pointer items-center justify-between rounded-3xl border border-slate-200 bg-white px-5 py-4 transition hover:border-blue-400 hover:bg-blue-50/40">
-                        <span class="font-black text-slate-800">{{ $item }}</span>
+                        <span class="flex items-center gap-3 font-black text-slate-800">
+                            <span class="badge-icon h-10 w-10 rounded-2xl">
+                                <i data-lucide="wallet"></i>
+                            </span>
+                            <span>{{ $item }}</span>
+                        </span>
+
                         <input type="radio" name="metode" value="{{ $item }}" required class="h-5 w-5">
                     </label>
                 @endforeach
 
                 <button class="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl tombol-primer px-5 py-3 font-black">
-                    Buat Pembayaran
+                    <i data-lucide="check-circle"></i>
+                    <span>Buat Pembayaran</span>
                 </button>
             </form>
         </div>

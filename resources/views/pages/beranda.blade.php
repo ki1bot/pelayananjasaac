@@ -22,7 +22,7 @@
                     </h2>
 
                     <p class="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-                        Pusat toko berada di Bekasi. Biaya layanan dihitung dari harga dasar ditambah biaya jarak, sehingga semakin jauh lokasi pelanggan maka total harga akan ikut naik otomatis.
+                        Pusat toko berada di Bekasi. Pelanggan dapat membuat pesanan, memilih layanan, memilih lokasi, menambahkan merk AC jika dibutuhkan, lalu admin akan meninjau dan memproses pesanan.
                     </p>
 
                     <div class="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -31,10 +31,17 @@
                             <span>Pesan Layanan</span>
                         </a>
 
-                        <a href="{{ route('pesanan.index') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl tombol-outline px-6 py-3 font-black">
-                            <i data-lucide="shopping-cart" class="h-5 w-5"></i>
-                            <span>Lihat Keranjang</span>
-                        </a>
+                        @auth
+                            <a href="{{ route('pesanan.index') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl tombol-outline px-6 py-3 font-black">
+                                <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+                                <span>Pesanan Saya</span>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl tombol-outline px-6 py-3 font-black">
+                                <i data-lucide="log-in" class="h-5 w-5"></i>
+                                <span>Login Dulu</span>
+                            </a>
+                        @endauth
                     </div>
                 </div>
 
@@ -63,9 +70,9 @@
                     </div>
 
                     <div class="mt-4 rounded-3xl border border-white/10 bg-white/[0.06] p-4">
-                        <p class="text-sm font-bold text-white">Estimasi cepat</p>
+                        <p class="text-sm font-bold text-white">Alur Pesanan</p>
                         <p class="mt-1 text-xs leading-6 text-white/55">
-                            Pilih layanan, pilih kota, lalu sistem menghitung subtotal otomatis.
+                            Draft → Sedang Ditinjau → Diproses → Selesai.
                         </p>
                     </div>
                 </div>

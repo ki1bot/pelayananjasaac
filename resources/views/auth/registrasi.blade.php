@@ -8,24 +8,24 @@
                     <i data-lucide="user-plus"></i>
                 </div>
                 <h2 class="mt-4 text-3xl font-black text-slate-950">Registrasi</h2>
-                <p class="mt-2 text-sm text-slate-500">Buat akun untuk transaksi layanan AC.</p>
+                <p class="mt-2 text-sm text-slate-500">Buat akun pelanggan untuk melakukan transaksi layanan AC.</p>
             </div>
 
             <form action="{{ route('registrasi.store') }}" method="POST" class="mt-6 space-y-4">
                 @csrf
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Nama</label>
+                    <label class="label-form">Nama</label>
                     <input type="text" name="nama" value="{{ old('nama') }}" class="input-form mt-2" required>
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Email</label>
+                    <label class="label-form">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" class="input-form mt-2" required>
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Password</label>
+                    <label class="label-form">Password</label>
                     <div class="relative mt-2">
                         <input id="password" type="password" name="password" class="input-form pr-12" required>
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Konfirmasi Password</label>
+                    <label class="label-form">Konfirmasi Password</label>
                     <div class="relative mt-2">
                         <input id="password_confirmation" type="password" name="password_confirmation" class="input-form pr-12" required>
 

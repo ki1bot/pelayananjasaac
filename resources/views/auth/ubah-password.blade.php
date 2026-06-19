@@ -16,7 +16,7 @@
                 @method('PUT')
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Password Lama</label>
+                    <label class="label-form">Password Lama</label>
                     <div class="relative mt-2">
                         <input id="password_lama" type="password" name="password_lama" class="input-form pr-12" required>
 
@@ -28,7 +28,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Password Baru</label>
+                    <label class="label-form">Password Baru</label>
                     <div class="relative mt-2">
                         <input id="password" type="password" name="password" class="input-form pr-12" required>
 
@@ -40,7 +40,7 @@
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Konfirmasi Password Baru</label>
+                    <label class="label-form">Konfirmasi Password Baru</label>
                     <div class="relative mt-2">
                         <input id="password_confirmation" type="password" name="password_confirmation" class="input-form pr-12" required>
 

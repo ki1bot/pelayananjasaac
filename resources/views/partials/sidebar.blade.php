@@ -67,4 +67,11 @@
             <span class="rounded-xl bg-white/[0.06] px-3 py-2">Tangerang</span>
         </div>
     </div>
+
+    <div class="mx-4 my-4 rounded-[1.7rem] border border-blue-400/20 bg-blue-500/10 p-4">
+        <p class="text-sm font-bold text-blue-100">Sistem Pesanan</p>
+        <p class="mt-2 text-xs leading-6 text-white/55">
+            Pelanggan membuat pesanan. Admin meninjau, memproses, lalu menyelesaikan pesanan.
+        </p>
+    </div>
 </aside>

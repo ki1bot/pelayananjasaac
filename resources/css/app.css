@@ -14,14 +14,14 @@
 
 :root {
     --warna-latar: #eaeaea;
-    --warna-latar-lembut: #f8fafc;
+    --warna-kartu: rgba(255, 255, 255, 0.88);
     --warna-sidebar: #0f172a;
     --warna-sidebar-gelap: #020617;
     --warna-primer: #2563eb;
     --warna-primer-gelap: #1d4ed8;
     --warna-teks: #0f172a;
     --warna-muted: #64748b;
-    --warna-border: rgba(15, 23, 42, 0.08);
+    --warna-border: rgba(15, 23, 42, 0.1);
 }
 
 html {
@@ -32,14 +32,19 @@ body {
     min-height: 100vh;
     background:
         radial-gradient(
-            circle at top left,
-            rgba(37, 99, 235, 0.08),
-            transparent 34rem
+            circle at 10% 5%,
+            rgba(37, 99, 235, 0.12),
+            transparent 28rem
         ),
         radial-gradient(
-            circle at bottom right,
+            circle at 90% 20%,
+            rgba(14, 165, 233, 0.08),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 70% 100%,
             rgba(15, 23, 42, 0.08),
-            transparent 32rem
+            transparent 30rem
         ),
         var(--warna-latar);
     color: var(--warna-teks);
@@ -50,7 +55,12 @@ body {
     background:
         radial-gradient(
             circle at top left,
-            rgba(37, 99, 235, 0.24),
+            rgba(37, 99, 235, 0.34),
+            transparent 18rem
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(14, 165, 233, 0.16),
             transparent 18rem
         ),
         linear-gradient(
@@ -83,7 +93,7 @@ body {
 }
 
 .kartu {
-    background: rgba(255, 255, 255, 0.88);
+    background: var(--warna-kartu);
     border: 1px solid var(--warna-border);
     box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
     backdrop-filter: blur(18px);
@@ -93,11 +103,17 @@ body {
     background:
         radial-gradient(
             circle at top right,
-            rgba(37, 99, 235, 0.38),
-            transparent 12rem
+            rgba(37, 99, 235, 0.45),
+            transparent 13rem
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(14, 165, 233, 0.16),
+            transparent 14rem
         ),
         linear-gradient(145deg, #020617, #0f172a);
     color: white;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
 }
 
 .tombol-primer {
@@ -115,24 +131,26 @@ body {
 
 .tombol-primer:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
-    filter: brightness(1.02);
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.28);
+    filter: brightness(1.03);
 }
 
 .tombol-outline {
     border: 1px solid rgba(15, 23, 42, 0.12);
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
     color: var(--warna-teks);
     transition:
         transform 180ms ease,
         border-color 180ms ease,
-        background 180ms ease;
+        background 180ms ease,
+        color 180ms ease;
 }
 
 .tombol-outline:hover {
     transform: translateY(-2px);
-    border-color: rgba(37, 99, 235, 0.45);
-    background: rgba(37, 99, 235, 0.04);
+    border-color: rgba(37, 99, 235, 0.42);
+    background: rgba(37, 99, 235, 0.05);
+    color: var(--warna-primer);
 }
 
 .nav-link {
@@ -156,9 +174,9 @@ body {
 }
 
 .nav-link-aktif {
-    background: rgba(37, 99, 235, 0.24);
+    background: rgba(37, 99, 235, 0.26);
     color: white;
-    border: 1px solid rgba(96, 165, 250, 0.34);
+    border: 1px solid rgba(147, 197, 253, 0.36);
 }
 
 .badge-icon {
@@ -173,11 +191,13 @@ body {
     color: var(--warna-primer);
 }
 
-.input-form {
+.input-form,
+.select-form,
+.textarea-form {
     width: 100%;
     border-radius: 18px;
     border: 1px solid rgba(15, 23, 42, 0.14);
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     padding: 13px 16px;
     outline: none;
     transition:
@@ -186,19 +206,53 @@ body {
         background 180ms ease;
 }
 
-.input-form:focus {
+.input-form:focus,
+.select-form:focus,
+.textarea-form:focus {
     border-color: var(--warna-primer);
     background: white;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
-.select-form {
-    width: 100%;
-    border-radius: 18px;
-    border: 1px solid rgba(15, 23, 42, 0.14);
-    background: rgba(255, 255, 255, 0.92);
-    padding: 13px 16px;
-    outline: none;
+.label-form {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 900;
+    color: #1e293b;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 900;
+}
+
+.status-draft {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.status-sedang_ditinjau {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.status-diproses {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-selesai {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-dibatalkan {
+    background: #fee2e2;
+    color: #b91c1c;
 }
 
 .animasi-masuk {

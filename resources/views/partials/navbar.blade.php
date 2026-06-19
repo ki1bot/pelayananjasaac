@@ -12,9 +12,15 @@
         </div>
 
         <div class="flex items-center gap-3">
-            <a href="{{ route('pesanan.index') }}" class="hidden rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
-                <i data-lucide="clipboard-list"></i>
-            </a>
+            @auth
+                <a href="{{ route('pesanan.index') }}" class="hidden rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
+                    <i data-lucide="clipboard-list"></i>
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="hidden rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
+                    Login
+                </a>
+            @endauth
 
             <div class="relative">
                 @auth
@@ -26,6 +32,10 @@
                         <div class="rounded-2xl bg-slate-50 px-4 py-3">
                             <p class="text-sm font-black text-slate-950">{{ auth()->user()->nama }}</p>
                             <p class="mt-1 truncate text-xs text-slate-500">{{ auth()->user()->email }}</p>
+
+                            <span class="mt-3 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
+                                {{ strtoupper(auth()->user()->role) }}
+                            </span>
                         </div>
 
                         <a href="{{ route('profil.ubah-password') }}" class="mt-2 flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100">

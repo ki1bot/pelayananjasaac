@@ -8,19 +8,19 @@
                     <i data-lucide="log-in"></i>
                 </div>
                 <h2 class="mt-4 text-3xl font-black text-slate-950">Login</h2>
-                <p class="mt-2 text-sm text-slate-500">Masuk untuk melanjutkan pembayaran dan mengelola akun.</p>
+                <p class="mt-2 text-sm text-slate-500">Masuk untuk membuat pesanan dan melihat status layanan.</p>
             </div>
 
             <form action="{{ route('login.store') }}" method="POST" class="mt-6 space-y-4">
                 @csrf
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Email</label>
+                    <label class="label-form">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" class="input-form mt-2" required>
                 </div>
 
                 <div>
-                    <label class="text-sm font-black text-slate-800">Password</label>
+                    <label class="label-form">Password</label>
                     <div class="relative mt-2">
                         <input id="password" type="password" name="password" class="input-form pr-12" required>
 

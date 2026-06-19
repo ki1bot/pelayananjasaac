@@ -61,7 +61,7 @@
                     Rp {{ number_format($item->harga_dasar, 0, ',', '.') }}
                 </p>
 
-                <label class="mt-5 block text-sm font-black text-slate-800">Lokasi dan Tarif Jarak</label>
+                <label class="label-form mt-5">Lokasi dan Tarif Jarak</label>
                 <select name="tarif_jarak_layanan_id" class="select-form mt-2" required>
                     @forelse($item->tarifJarak as $tarif)
                         <option value="{{ $tarif->id }}">
@@ -73,7 +73,7 @@
                 </select>
 
                 @if($item->wajib_merk)
-                    <label class="mt-4 block text-sm font-black text-slate-800">Merk AC</label>
+                    <label class="label-form mt-4">Merk AC</label>
                     <select name="merk_ac_id" class="select-form mt-2" required>
                         <option value="">Pilih merk AC</option>
                         @foreach($merkAc as $merk)
@@ -84,11 +84,11 @@
                     <input type="hidden" name="merk_ac_id" value="">
                 @endif
 
-                <label class="mt-4 block text-sm font-black text-slate-800">Jumlah</label>
+                <label class="label-form mt-4">Jumlah</label>
                 <input type="number" name="jumlah" value="1" min="1" class="input-form mt-2" required>
 
-                <label class="mt-4 block text-sm font-black text-slate-800">Catatan</label>
-                <textarea name="catatan" rows="3" class="input-form mt-2" placeholder="Contoh: AC 1 PK, kamar depan, outdoor sulit dijangkau.">{{ old('catatan') }}</textarea>
+                <label class="label-form mt-4">Catatan</label>
+                <textarea name="catatan" rows="3" class="textarea-form mt-2" placeholder="Contoh: AC 1 PK, kamar depan, outdoor sulit dijangkau.">{{ old('catatan') }}</textarea>
 
                 <button class="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl tombol-primer px-5 py-3 font-black">
                     <i data-lucide="plus"></i>

@@ -6,14 +6,16 @@
             <div>
                 <p class="text-sm font-black text-blue-600">{{ $pesanan->kode_pesanan }}</p>
                 <h2 class="mt-2 text-3xl font-black text-slate-950">Detail Pesanan</h2>
-                <p class="mt-2 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
+
+                <span class="status-pill status-{{ $pesanan->status }} mt-3">
                     {{ str_replace('_', ' ', strtoupper($pesanan->status)) }}
-                </p>
+                </span>
             </div>
 
             @if($pesanan->bisaDiubahOlehPelanggan())
                 <div class="flex flex-wrap gap-3">
                     <a href="{{ route('pesanan.create') }}" class="rounded-2xl tombol-outline px-5 py-3 font-black">Tambah Detail</a>
+
                     @if($pesanan->detail->count() > 0)
                         <a href="{{ route('pembayaran.index', $pesanan) }}" class="rounded-2xl tombol-primer px-5 py-3 font-black">Lanjut Pembayaran</a>
                     @endif
@@ -23,29 +25,35 @@
     </section>
 
     @if(! $pesanan->bisaDiubahOlehPelanggan())
-        <div class="mb-5 rounded-2xl border border-yellow-200 bg-yellow-50 px-4 py-3 text-sm font-semibold text-yellow-700">
+        <div class="mb-5 rounded-2xl border border-yellow-200 bg-yellow-50 px-4 py-3 text-sm font-bold text-yellow-700">
             Pesanan sudah masuk pembayaran atau proses admin. Pelanggan tidak dapat menambah, mengedit, atau menghapus detail pesanan.
         </div>
     @endif
 
     <div class="grid gap-6 lg:grid-cols-[1fr_22rem]">
         <div class="space-y-4">
-            @foreach($pesanan->detail as $detail)
+            @forelse($pesanan->detail as $detail)
                 <div class="kartu rounded-[2rem] p-5">
                     <div class="flex flex-col justify-between gap-5 md:flex-row">
-                        <div>
-                            <h3 class="text-lg font-black text-slate-950">{{ $detail->layanan->nama }}</h3>
-                            <p class="mt-1 text-sm text-slate-500">
-                                Lokasi: {{ $detail->tarifJarak->lokasi->kota }}
-                            </p>
+                        <div class="flex gap-4">
+                            <span class="badge-icon">
+                                <i data-lucide="{{ $detail->layanan->icon }}"></i>
+                            </span>
 
-                            @if($detail->merkAc)
-                                <p class="mt-1 text-sm text-slate-500">Merk AC: {{ $detail->merkAc->nama }}</p>
-                            @endif
+                            <div>
+                                <h3 class="text-lg font-black text-slate-950">{{ $detail->layanan->nama }}</h3>
+                                <p class="mt-1 text-sm font-semibold text-slate-500">
+                                    Lokasi: {{ $detail->tarifJarak->lokasi->kota }}
+                                </p>
 
-                            @if($detail->catatan)
-                                <p class="mt-3 rounded-2xl bg-slate-50 p-3 text-sm leading-6 text-slate-600">{{ $detail->catatan }}</p>
-                            @endif
+                                @if($detail->merkAc)
+                                    <p class="mt-1 text-sm font-semibold text-slate-500">Merk AC: {{ $detail->merkAc->nama }}</p>
+                                @endif
+
+                                @if($detail->catatan)
+                                    <p class="mt-3 rounded-2xl bg-slate-50 p-3 text-sm leading-6 text-slate-600">{{ $detail->catatan }}</p>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="md:text-right">
@@ -68,7 +76,12 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="kartu rounded-[2rem] p-10 text-center">
+                    <h3 class="text-xl font-black text-slate-950">Detail pesanan masih kosong</h3>
+                    <p class="mt-2 text-sm text-slate-500">Tambahkan layanan terlebih dahulu.</p>
+                </div>
+            @endforelse
         </div>
 
         <div class="kartu h-fit rounded-[2rem] p-6">
@@ -82,8 +95,8 @@
             @if($pesanan->pembayaran)
                 <div class="mt-4 rounded-3xl bg-blue-50 p-4">
                     <p class="text-sm font-black text-blue-700">Pembayaran</p>
-                    <p class="mt-1 text-sm text-blue-700">{{ $pesanan->pembayaran->metode }}</p>
-                    <p class="mt-1 text-sm text-blue-700">{{ $pesanan->pembayaran->status }}</p>
+                    <p class="mt-1 text-sm font-bold text-blue-700">{{ $pesanan->pembayaran->metode }}</p>
+                    <p class="mt-1 text-sm text-blue-700">{{ str_replace('_', ' ', strtoupper($pesanan->pembayaran->status)) }}</p>
                 </div>
             @endif
         </div>

@@ -181,7 +181,7 @@ function jalankanGrafikProduk() {
                     },
                     ticks: {
                         font: {
-                            weight: 600,
+                            weight: 700,
                         },
                     },
                 },

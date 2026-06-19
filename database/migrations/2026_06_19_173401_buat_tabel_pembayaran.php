@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Pengguna::class, 'pengguna_id')->constrained('pengguna')->cascadeOnDelete();
+            $table->foreignId('pengguna_id')->constrained('pengguna')->cascadeOnDelete();
             $table->string('kode_pembayaran')->unique();
             $table->string('metode', 60);
             $table->unsignedInteger('total');

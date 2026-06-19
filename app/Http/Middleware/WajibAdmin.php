@@ -20,7 +20,7 @@ class WajibAdmin
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        if (Auth::user()->role !== 'admin') {
+        if (! Auth::user()->isAdmin()) {
             abort(403);
         }
 

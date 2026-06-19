@@ -42,7 +42,7 @@ class BuatAdmin extends Command
             ]
         );
 
-        $this->info('Akun admin berhasil disimpan');
+        $this->info('Akun admin berhasil disimpan.');
         $this->line('Email: '.$email);
 
         return self::SUCCESS;

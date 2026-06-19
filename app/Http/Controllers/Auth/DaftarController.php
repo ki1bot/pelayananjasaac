@@ -18,19 +18,23 @@ class DaftarController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nama' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', 'unique:pengguna,email'],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'nama' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:160', 'unique:pengguna,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $pengguna = Pengguna::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => 'pelanggan',
+            'provider' => null,
+            'provider_id' => null,
+            'avatar' => null,
         ]);
 
         Auth::login($pengguna);
 
-        return redirect()->route('beranda')->with('success', 'Registrasi berhasil.');
+        return redirect()->route('beranda')->with('success', 'Akun pelanggan berhasil dibuat.');
     }
 }

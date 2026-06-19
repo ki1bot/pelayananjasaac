@@ -30,4 +30,9 @@ class Pengguna extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    public function isPelanggan(): bool
+    {
+        return $this->role === 'pelanggan';
+    }
 }

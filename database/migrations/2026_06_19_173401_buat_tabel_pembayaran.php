@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pembayaran', function (Blueprint $table) {
-            $table->foreignId('pesanan_id')->nullable()->after('pengguna_id')->constrained('pesanan')->nullOnDelete();
+        Schema::create('pembayaran', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('pengguna_id')->constrained('pengguna')->cascadeOnDelete();
+            $table->foreignId('pesanan_id')->nullable()->constrained('pesanan')->nullOnDelete();
+            $table->string('kode_pembayaran')->unique();
+            $table->string('metode', 60);
+            $table->unsignedInteger('total');
+            $table->enum('status', ['menunggu_konfirmasi', 'berhasil', 'gagal'])->default('menunggu_konfirmasi');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pembayaran', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('pesanan_id');
-        });
+        Schema::dropIfExists('pembayaran');
     }
 };

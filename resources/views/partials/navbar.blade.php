@@ -12,8 +12,8 @@
         </div>
 
         <div class="flex items-center gap-3">
-            <a href="{{ route('keranjang.index') }}" class="hidden rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
-                <i data-lucide="shopping-cart"></i>
+            <a href="{{ route('pesanan.index') }}" class="hidden rounded-2xl border border-slate-200 bg-white p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 sm:flex">
+                <i data-lucide="clipboard-list"></i>
             </a>
 
             <div class="relative">

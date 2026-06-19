@@ -32,15 +32,19 @@
                 <span>Layanan</span>
             </a>
 
-            <a href="{{ route('keranjang.index') }}" data-sidebar-link class="nav-link {{ request()->routeIs('keranjang.*') ? 'nav-link-aktif' : '' }}">
-                <i data-lucide="shopping-cart"></i>
-                <span>Keranjang</span>
-            </a>
+            @auth
+                <a href="{{ route('pesanan.index') }}" data-sidebar-link class="nav-link {{ request()->routeIs('pesanan.*') || request()->routeIs('detail-pesanan.*') ? 'nav-link-aktif' : '' }}">
+                    <i data-lucide="clipboard-list"></i>
+                    <span>Pesanan Saya</span>
+                </a>
 
-            <a href="{{ route('pembayaran.index') }}" data-sidebar-link class="nav-link {{ request()->routeIs('pembayaran.*') ? 'nav-link-aktif' : '' }}">
-                <i data-lucide="credit-card"></i>
-                <span>Pembayaran</span>
-            </a>
+                @if(auth()->user()->isAdmin())
+                    <a href="{{ route('admin.pesanan.index') }}" data-sidebar-link class="nav-link {{ request()->routeIs('admin.pesanan.*') ? 'nav-link-aktif' : '' }}">
+                        <i data-lucide="shield-check"></i>
+                        <span>Admin Pesanan</span>
+                    </a>
+                @endif
+            @endauth
         </nav>
     </div>
 
@@ -62,12 +66,5 @@
             <span class="rounded-xl bg-white/[0.06] px-3 py-2">Bogor</span>
             <span class="rounded-xl bg-white/[0.06] px-3 py-2">Tangerang</span>
         </div>
-    </div>
-
-    <div class="mx-4 mt-4 rounded-[1.7rem] border border-blue-400/20 bg-blue-500/10 p-4">
-        <p class="text-sm font-bold text-blue-100">Biaya Jarak Otomatis</p>
-        <p class="mt-2 text-xs leading-6 text-white/55">
-            Total harga dihitung dari harga dasar layanan ditambah jarak lokasi pelanggan.
-        </p>
     </div>
 </aside>

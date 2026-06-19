@@ -31,7 +31,7 @@
                             <span>Pesan Layanan</span>
                         </a>
 
-                        <a href="{{ route('keranjang.index') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl tombol-outline px-6 py-3 font-black">
+                        <a href="{{ route('pesanan.index') }}" class="inline-flex items-center justify-center gap-2 rounded-2xl tombol-outline px-6 py-3 font-black">
                             <i data-lucide="shopping-cart" class="h-5 w-5"></i>
                             <span>Lihat Keranjang</span>
                         </a>

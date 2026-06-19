@@ -14,10 +14,20 @@ class Layanan extends Model
         'harga_dasar',
         'icon',
         'status',
+        'wajib_merk',
     ];
 
-    public function keranjang()
+    protected $casts = [
+        'wajib_merk' => 'boolean',
+    ];
+
+    public function tarifJarak()
     {
-        return $this->hasMany(Keranjang::class, 'layanan_id');
+        return $this->hasMany(TarifJarakLayanan::class, 'layanan_id');
+    }
+
+    public function detailPesanan()
+    {
+        return $this->hasMany(DetailPesanan::class, 'layanan_id');
     }
 }

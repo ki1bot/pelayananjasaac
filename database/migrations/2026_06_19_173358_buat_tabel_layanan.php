@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->unsignedInteger('harga_dasar');
             $table->string('icon')->default('wind');
+            $table->boolean('wajib_merk')->default(false);
             $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
         });

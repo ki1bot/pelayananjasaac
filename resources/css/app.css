@@ -13,5 +13,44 @@
 }
 
 :root {
-    background-color: #eaeaea;
+    --warna-latar: #eaeaea;
+    --warna-primer: #0f172a;
+    --warna-sekunder: #2563eb;
+    --warna-kartu: #ffffff;
+    --warna-teks: #111827;
+    --warna-muted: #6b7280;
+}
+
+body {
+    background: var(--warna-latar);
+    color: var(--warna-teks);
+}
+
+.sidebar-aktif {
+    transform: translateX(0);
+}
+
+.sidebar-nonaktif {
+    transform: translateX(-100%);
+}
+
+.transisi-sidebar {
+    transition:
+        transform 280ms ease,
+        width 280ms ease;
+}
+
+.kartu {
+    background: var(--warna-kartu);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+}
+
+.tombol-primer {
+    background: var(--warna-sekunder);
+    color: white;
+}
+
+.tombol-primer:hover {
+    filter: brightness(0.95);
 }

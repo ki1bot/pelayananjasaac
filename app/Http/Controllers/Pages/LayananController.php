@@ -15,7 +15,9 @@ class LayananController extends Controller
             ->orderBy('harga_dasar')
             ->get();
 
-        $merkAc = MerkAc::where('status', 'aktif')->orderBy('nama')->get();
+        $merkAc = MerkAc::where('status', 'aktif')
+            ->orderBy('nama')
+            ->get();
 
         return view('pages.layanan', compact('layanan', 'merkAc'));
     }

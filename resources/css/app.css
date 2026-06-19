@@ -14,43 +14,155 @@
 
 :root {
     --warna-latar: #eaeaea;
-    --warna-primer: #0f172a;
-    --warna-sekunder: #2563eb;
+    --warna-sidebar: #0f172a;
+    --warna-sidebar-dua: #111827;
+    --warna-primer: #2563eb;
+    --warna-primer-gelap: #1d4ed8;
     --warna-kartu: #ffffff;
-    --warna-teks: #111827;
-    --warna-muted: #6b7280;
+    --warna-teks: #0f172a;
+    --warna-muted: #64748b;
+    --warna-border: rgba(15, 23, 42, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    min-height: 100vh;
     background: var(--warna-latar);
     color: var(--warna-teks);
 }
 
-.sidebar-aktif {
+.sidebar {
+    transform: translateX(-100%);
+    transition: transform 280ms ease;
+    background: linear-gradient(
+        180deg,
+        var(--warna-sidebar),
+        var(--warna-sidebar-dua)
+    );
+}
+
+.sidebar.sidebar-aktif {
     transform: translateX(0);
 }
 
-.sidebar-nonaktif {
-    transform: translateX(-100%);
+.konten-aplikasi {
+    min-height: 100vh;
 }
 
-.transisi-sidebar {
-    transition:
-        transform 280ms ease,
-        width 280ms ease;
+.overlay-sidebar {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+}
+
+.overlay-sidebar.overlay-aktif {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .kartu {
     background: var(--warna-kartu);
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    border: 1px solid var(--warna-border);
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
 }
 
 .tombol-primer {
-    background: var(--warna-sekunder);
+    background: var(--warna-primer);
     color: white;
+    transition:
+        background 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
 }
 
 .tombol-primer:hover {
-    filter: brightness(0.95);
+    background: var(--warna-primer-gelap);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.28);
+}
+
+.tombol-outline {
+    border: 1px solid rgba(15, 23, 42, 0.16);
+    background: white;
+    color: var(--warna-teks);
+    transition:
+        border-color 180ms ease,
+        background 180ms ease,
+        transform 180ms ease;
+}
+
+.tombol-outline:hover {
+    border-color: var(--warna-primer);
+    background: rgba(37, 99, 235, 0.04);
+    transform: translateY(-1px);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 16px;
+    padding: 12px 14px;
+    color: rgba(255, 255, 255, 0.72);
+    transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    transform: translateX(2px);
+}
+
+.nav-link-aktif {
+    background: rgba(37, 99, 235, 0.22);
+    color: white;
+    border: 1px solid rgba(96, 165, 250, 0.28);
+}
+
+.badge-icon {
+    display: flex;
+    height: 46px;
+    width: 46px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--warna-primer);
+}
+
+.input-form {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    background: white;
+    padding: 12px 16px;
+    outline: none;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.input-form:focus {
+    border-color: var(--warna-primer);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        transform: translateX(0);
+    }
+
+    .konten-aplikasi {
+        padding-left: 18rem;
+    }
+
+    .overlay-sidebar {
+        display: none;
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.aplikasi')
+@extends('layouts.aplikasi', ['judul' => 'Login'])
 
 @section('konten')
     <div class="mx-auto max-w-md">
@@ -10,15 +10,17 @@
 
                 <div>
                     <label class="text-sm font-semibold">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3" required>
+                    <input type="email" name="email" value="{{ old('email') }}" class="input-form mt-2" required>
                 </div>
 
                 <div>
                     <label class="text-sm font-semibold">Password</label>
                     <div class="relative mt-2">
-                        <input id="password" type="password" name="password" class="w-full rounded-xl border border-slate-300 px-4 py-3 pr-12" required>
-                        <button type="button" onclick="togglePassword('password', 'iconPassword')" class="absolute right-4 top-3">
-                            <i id="iconPassword" data-lucide="eye"></i>
+                        <input id="password" type="password" name="password" class="input-form pr-12" required>
+
+                        <button type="button" data-password-toggle data-password-target="password" class="absolute right-4 top-3 text-slate-500">
+                            <i data-lucide="eye" data-password-eye-open></i>
+                            <i data-lucide="eye-off" data-password-eye-close class="hidden"></i>
                         </button>
                     </div>
                 </div>
@@ -27,8 +29,13 @@
             </form>
 
             <div class="mt-5 grid gap-3">
-                <a href="{{ route('sosial.redirect', 'google') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">Login dengan Google</a>
-                <a href="{{ route('sosial.redirect', 'facebook') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">Login dengan Facebook</a>
+                <a href="{{ route('sosial.redirect', 'google') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">
+                    Login dengan Google
+                </a>
+
+                <a href="{{ route('sosial.redirect', 'facebook') }}" class="rounded-xl border border-slate-300 px-5 py-3 text-center font-semibold">
+                    Login dengan Facebook
+                </a>
             </div>
 
             <p class="mt-5 text-center text-sm text-slate-600">

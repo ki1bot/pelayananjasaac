@@ -1,6 +1,13 @@
 @extends('layouts.aplikasi', ['judul' => 'Pelayanan Jasa AC'])
 
 @section('konten')
+    @php
+        $labelGrafik = $grafik->pluck('nama_produk')->values();
+        $dataGrafik = $grafik->pluck('jumlah_pesanan')->values();
+    @endphp
+
+    <div id="dataGrafikProduk" class="hidden" data-labels='@json($labelGrafik)' data-values='@json($dataGrafik)'></div>
+
     <section class="grid gap-6 xl:grid-cols-[1.6fr_0.8fr]">
         <div class="kartu overflow-hidden rounded-[2rem]">
             <div class="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
@@ -37,6 +44,7 @@
                             <p class="text-sm text-white/55">Mulai dari</p>
                             <p class="mt-1 text-3xl font-black">Rp 75K</p>
                         </div>
+
                         <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600">
                             <i data-lucide="wind"></i>
                         </div>
@@ -47,6 +55,7 @@
                             <p class="text-2xl font-black">4</p>
                             <p class="mt-1 text-xs text-white/55">Area kota</p>
                         </div>
+
                         <div class="rounded-2xl bg-white/8 p-4">
                             <p class="text-2xl font-black">{{ $layanan->count() }}</p>
                             <p class="mt-1 text-xs text-white/55">Jenis layanan</p>
@@ -134,49 +143,3 @@
         </div>
     </section>
 @endsection
-
-@push('script')
-<script>
-    const labelProduk = @json($grafik->pluck('nama_produk'));
-    const dataProduk = @json($grafik->pluck('jumlah_pesanan'));
-
-    new Chart(document.getElementById('grafikProduk'), {
-        type: 'bar',
-        data: {
-            labels: labelProduk,
-            datasets: [
-                {
-                    label: 'Jumlah Pesanan',
-                    data: dataProduk,
-                    borderRadius: 14,
-                    borderSkipped: false
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true,
-                    labels: {
-                        boxWidth: 14,
-                        boxHeight: 14,
-                        useBorderRadius: true
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    grid: {
-                        display: false
-                    }
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-@endpush

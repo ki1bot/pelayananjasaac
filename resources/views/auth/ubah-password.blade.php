@@ -1,4 +1,4 @@
-@extends('layouts.aplikasi')
+@extends('layouts.aplikasi', ['judul' => 'Ubah Password'])
 
 @section('konten')
     <div class="mx-auto max-w-md">
@@ -12,9 +12,11 @@
                 <div>
                     <label class="text-sm font-semibold">Password Lama</label>
                     <div class="relative mt-2">
-                        <input id="password_lama" type="password" name="password_lama" class="w-full rounded-xl border border-slate-300 px-4 py-3 pr-12" required>
-                        <button type="button" onclick="togglePassword('password_lama', 'iconPasswordLama')" class="absolute right-4 top-3">
-                            <i id="iconPasswordLama" data-lucide="eye"></i>
+                        <input id="password_lama" type="password" name="password_lama" class="input-form pr-12" required>
+
+                        <button type="button" data-password-toggle data-password-target="password_lama" class="absolute right-4 top-3 text-slate-500">
+                            <i data-lucide="eye" data-password-eye-open></i>
+                            <i data-lucide="eye-off" data-password-eye-close class="hidden"></i>
                         </button>
                     </div>
                 </div>
@@ -22,9 +24,11 @@
                 <div>
                     <label class="text-sm font-semibold">Password Baru</label>
                     <div class="relative mt-2">
-                        <input id="password" type="password" name="password" class="w-full rounded-xl border border-slate-300 px-4 py-3 pr-12" required>
-                        <button type="button" onclick="togglePassword('password', 'iconPasswordBaru')" class="absolute right-4 top-3">
-                            <i id="iconPasswordBaru" data-lucide="eye"></i>
+                        <input id="password" type="password" name="password" class="input-form pr-12" required>
+
+                        <button type="button" data-password-toggle data-password-target="password" class="absolute right-4 top-3 text-slate-500">
+                            <i data-lucide="eye" data-password-eye-open></i>
+                            <i data-lucide="eye-off" data-password-eye-close class="hidden"></i>
                         </button>
                     </div>
                 </div>
@@ -32,9 +36,11 @@
                 <div>
                     <label class="text-sm font-semibold">Konfirmasi Password Baru</label>
                     <div class="relative mt-2">
-                        <input id="password_confirmation" type="password" name="password_confirmation" class="w-full rounded-xl border border-slate-300 px-4 py-3 pr-12" required>
-                        <button type="button" onclick="togglePassword('password_confirmation', 'iconPasswordKonfirmasi')" class="absolute right-4 top-3">
-                            <i id="iconPasswordKonfirmasi" data-lucide="eye"></i>
+                        <input id="password_confirmation" type="password" name="password_confirmation" class="input-form pr-12" required>
+
+                        <button type="button" data-password-toggle data-password-target="password_confirmation" class="absolute right-4 top-3 text-slate-500">
+                            <i data-lucide="eye" data-password-eye-open></i>
+                            <i data-lucide="eye-off" data-password-eye-close class="hidden"></i>
                         </button>
                     </div>
                 </div>

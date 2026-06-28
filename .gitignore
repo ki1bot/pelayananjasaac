@@ -4,6 +4,7 @@
 .env.example
 .env.backup
 .env.production
+.htaccess
 .phpactor.json
 .phpunit.result.cache
 /.codex

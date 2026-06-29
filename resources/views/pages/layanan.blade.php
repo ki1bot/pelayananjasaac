@@ -16,7 +16,7 @@
                 </h2>
 
                 <p class="mt-4 max-w-3xl text-sm leading-7 text-slate-600">
-                    Setiap layanan memiliki tarif jarak sendiri. Harga akhir dihitung dari harga dasar layanan ditambah tarif jarak berdasarkan lokasi tujuan.
+                    Setiap layanan memiliki tarif jarak sendiri. Harga akhir dihitung dari harga dasar layanan ditambah tarif jarak berdasarkan lokasi tujuan seperti Bekasi, Jakarta, Bogor, Tangerang, Banten, dan Cikarang.
                 </p>
 
                 <div class="mt-6 grid gap-3 sm:grid-cols-3">
@@ -76,7 +76,7 @@
 
             <div class="relative z-10 mt-6 rounded-3xl border border-white/10 bg-white/10 p-4">
                 <p class="text-sm leading-6 text-white/70">
-                    Tarif jarak berbeda untuk setiap layanan dan lokasi. Pastikan pelanggan memilih lokasi yang sesuai sebelum menambahkan pesanan.
+                    Tarif jarak berbeda untuk setiap layanan dan lokasi. Area layanan tersedia untuk Bekasi, Jakarta, Bogor, Tangerang, Banten, dan Cikarang.
                 </p>
             </div>
         </div>

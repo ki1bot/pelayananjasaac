@@ -101,12 +101,22 @@
                 </div>
 
                 <div class="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-4 shadow-sm">
+                    <span class="font-black text-slate-800">Cikarang</span>
+                    <span class="text-sm font-semibold text-slate-500">Jarak sedang</span>
+                </div>
+
+                <div class="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-4 shadow-sm">
                     <span class="font-black text-slate-800">Bogor</span>
                     <span class="text-sm font-semibold text-slate-500">Jarak jauh</span>
                 </div>
 
                 <div class="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-4 shadow-sm">
                     <span class="font-black text-slate-800">Tangerang</span>
+                    <span class="text-sm font-semibold text-slate-500">Jarak jauh</span>
+                </div>
+
+                <div class="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-4 shadow-sm">
+                    <span class="font-black text-slate-800">Banten</span>
                     <span class="text-sm font-semibold text-slate-500">Jarak jauh</span>
                 </div>
             </div>

@@ -72,6 +72,8 @@ class DatabaseSeeder extends Seeder
             ['kota' => 'Jakarta', 'jarak_km' => 20, 'status' => 'aktif'],
             ['kota' => 'Bogor', 'jarak_km' => 55, 'status' => 'aktif'],
             ['kota' => 'Tangerang', 'jarak_km' => 45, 'status' => 'aktif'],
+            ['kota' => 'Banten', 'jarak_km' => 90, 'status' => 'aktif'],
+            ['kota' => 'Cikarang', 'jarak_km' => 25, 'status' => 'aktif'],
         ];
 
         foreach ($lokasi as $item) {
@@ -112,36 +114,48 @@ class DatabaseSeeder extends Seeder
                 'Jakarta' => 25000,
                 'Bogor' => 60000,
                 'Tangerang' => 55000,
+                'Banten' => 95000,
+                'Cikarang' => 20000,
             ],
             'Service AC' => [
                 'Bekasi' => 0,
                 'Jakarta' => 35000,
                 'Bogor' => 80000,
                 'Tangerang' => 70000,
+                'Banten' => 120000,
+                'Cikarang' => 30000,
             ],
             'Isi Freon' => [
                 'Bekasi' => 0,
                 'Jakarta' => 30000,
                 'Bogor' => 70000,
                 'Tangerang' => 65000,
+                'Banten' => 110000,
+                'Cikarang' => 25000,
             ],
             'Bongkar Pasang AC' => [
                 'Bekasi' => 0,
                 'Jakarta' => 50000,
                 'Bogor' => 120000,
                 'Tangerang' => 100000,
+                'Banten' => 180000,
+                'Cikarang' => 45000,
             ],
             'Beli AC' => [
                 'Bekasi' => 0,
                 'Jakarta' => 75000,
                 'Bogor' => 160000,
                 'Tangerang' => 140000,
+                'Banten' => 240000,
+                'Cikarang' => 65000,
             ],
             'Jual AC' => [
                 'Bekasi' => 0,
                 'Jakarta' => 65000,
                 'Bogor' => 150000,
                 'Tangerang' => 130000,
+                'Banten' => 220000,
+                'Cikarang' => 60000,
             ],
         ];
 

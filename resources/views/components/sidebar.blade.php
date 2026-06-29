@@ -1,18 +1,16 @@
-<button type="button" data-sidebar-open class="fixed left-5 top-5 z-30 flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/80 bg-white/90 text-slate-700 shadow-xl shadow-slate-900/10 backdrop-blur-xl transition hover:border-blue-300 hover:text-blue-600 hover:shadow-2xl">
+<button type="button" data-sidebar-open aria-label="Buka sidebar" class="fixed left-4 top-2 z-[70] flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/80 bg-white/95 text-slate-700 shadow-xl shadow-slate-900/10 backdrop-blur-xl transition hover:border-blue-300 hover:text-blue-600 hover:shadow-2xl sm:left-5 sm:top-3">
     <i data-lucide="menu"></i>
 </button>
 
-<div data-sidebar-overlay class="overlay-sidebar fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm lg:hidden"></div>
+<div data-sidebar-overlay class="overlay-sidebar fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm lg:hidden"></div>
 
-<aside id="sidebar" class="sidebar fixed left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-auto text-white">
-    <div class="relative z-10 flex h-20 shrink-0 items-center justify-between border-b border-white/10 px-5">
-        <a href="{{ route('beranda') }}" data-sidebar-link class="flex items-center gap-3">
-            <span>
-                <span class="block text-base font-black leading-tight">{{ $judul ?? 'Pelayanan Jasa AC' }}</span>
-            </span>
+<aside id="sidebar" class="sidebar fixed left-0 top-0 z-[60] flex h-screen w-[86vw] max-w-80 flex-col overflow-y-auto text-white lg:w-72 lg:max-w-72">
+    <div class="relative z-10 flex h-20 shrink-0 items-center justify-between gap-4 border-b border-white/10 px-5">
+        <a href="{{ route('beranda') }}" data-sidebar-link class="min-w-0 flex-1">
+            <span class="block truncate text-base font-black leading-tight">{{ $judul ?? 'Pelayanan Jasa AC' }}</span>
         </a>
 
-        <button type="button" data-sidebar-close class="rounded-2xl p-2 text-white/70 transition hover:bg-white/10 hover:text-white">
+        <button type="button" data-sidebar-close aria-label="Tutup sidebar" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl text-white/70 transition hover:bg-white/10 hover:text-white">
             <i data-lucide="x"></i>
         </button>
     </div>
@@ -45,14 +43,5 @@
                 @endif
             @endauth
         </nav>
-    </div>
-
-    <div class="relative z-10 mt-auto mx-4 mb-4 overflow-hidden rounded-[1.8rem] border border-blue-400/20 bg-blue-500/10 p-4">
-        <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-blue-400/20 blur-2xl"></div>
-
-        <p class="relative text-sm font-black text-blue-100">Sistem Pesanan</p>
-        <p class="relative mt-2 text-xs leading-6 text-white/58">
-            Pelanggan membuat pesanan. Admin meninjau, memproses, lalu menyelesaikan pesanan.
-        </p>
     </div>
 </aside>

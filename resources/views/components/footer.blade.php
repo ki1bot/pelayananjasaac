@@ -5,10 +5,10 @@
 @endphp
 
 <footer class="border-t border-slate-200 bg-white/80 backdrop-blur-xl">
-    <div class="mx-auto grid {{ $kelasLebarFooter }} gap-6 px-4 py-8 text-sm text-slate-500 sm:px-6 md:grid-cols-3 lg:px-8">
-        <div class="text-center md:text-center">
-            <p class="font-black text-slate-800">© {{ date('Y') }} Jasa AC Bekasi</p>
-            <p class="mt-2 leading-6">Harga mengikuti lokasi dan jenis layanan.</p>
+    <div class="mx-auto flex {{ $kelasLebarFooter }} items-center justify-center px-4 py-8 text-center text-sm text-slate-500 sm:px-6 lg:px-8">
+        <div>
+            <p class="font-black text-slate-800">© {{ date('Y') }} Pelayanan Jasa Ac</p>
+            <p class="mt-2 leading-6">Menyediakan Ac yang berkualitas.</p>
         </div>
     </div>
 </footer>

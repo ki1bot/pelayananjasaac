@@ -24,30 +24,72 @@ function jalankanSidebar() {
         return;
     }
 
-    const isMobile = () => window.innerWidth < 1024;
+    const isDesktop = () => window.innerWidth >= 1024;
 
-    const bukaSidebar = () => {
-        if (isMobile()) {
-            sidebar.classList.add("sidebar-aktif");
-            overlay.classList.add("overlay-aktif");
-            document.body.classList.add("overflow-hidden");
+    const sidebarSedangTerbuka = () => {
+        if (isDesktop()) {
+            return !sidebar.classList.contains("sidebar-tertutup");
+        }
+
+        return sidebar.classList.contains("sidebar-aktif");
+    };
+
+    const sinkronkanTampilan = () => {
+        const terbuka = sidebarSedangTerbuka();
+
+        tombolBukaSidebar.forEach((tombol) => {
+            tombol.classList.toggle("hidden", terbuka);
+            tombol.setAttribute("aria-expanded", terbuka ? "true" : "false");
+        });
+
+        tombolTutupSidebar.forEach((tombol) => {
+            tombol.setAttribute("aria-expanded", terbuka ? "true" : "false");
+        });
+
+        if (isDesktop()) {
+            overlay.classList.remove("overlay-aktif");
+            document.body.classList.remove("overflow-hidden");
+
+            if (sidebar.classList.contains("sidebar-tertutup")) {
+                konten.classList.add("konten-sidebar-tertutup");
+            } else {
+                konten.classList.remove("konten-sidebar-tertutup");
+            }
+
             return;
         }
 
-        sidebar.classList.remove("sidebar-tertutup");
         konten.classList.remove("konten-sidebar-tertutup");
+
+        if (sidebar.classList.contains("sidebar-aktif")) {
+            overlay.classList.add("overlay-aktif");
+            document.body.classList.add("overflow-hidden");
+        } else {
+            overlay.classList.remove("overlay-aktif");
+            document.body.classList.remove("overflow-hidden");
+        }
+    };
+
+    const bukaSidebar = () => {
+        if (isDesktop()) {
+            sidebar.classList.remove("sidebar-tertutup");
+            konten.classList.remove("konten-sidebar-tertutup");
+        } else {
+            sidebar.classList.add("sidebar-aktif");
+        }
+
+        sinkronkanTampilan();
     };
 
     const tutupSidebar = () => {
-        if (isMobile()) {
+        if (isDesktop()) {
+            sidebar.classList.add("sidebar-tertutup");
+            konten.classList.add("konten-sidebar-tertutup");
+        } else {
             sidebar.classList.remove("sidebar-aktif");
-            overlay.classList.remove("overlay-aktif");
-            document.body.classList.remove("overflow-hidden");
-            return;
         }
 
-        sidebar.classList.add("sidebar-tertutup");
-        konten.classList.add("konten-sidebar-tertutup");
+        sinkronkanTampilan();
     };
 
     tombolBukaSidebar.forEach((tombol) => {
@@ -62,19 +104,15 @@ function jalankanSidebar() {
 
     linkSidebar.forEach((link) => {
         link.addEventListener("click", () => {
-            if (isMobile()) {
+            if (!isDesktop()) {
                 tutupSidebar();
             }
         });
     });
 
-    window.addEventListener("resize", () => {
-        if (!isMobile()) {
-            sidebar.classList.remove("sidebar-aktif");
-            overlay.classList.remove("overlay-aktif");
-            document.body.classList.remove("overflow-hidden");
-        }
-    });
+    window.addEventListener("resize", sinkronkanTampilan);
+
+    sinkronkanTampilan();
 }
 
 function jalankanProfil() {

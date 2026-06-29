@@ -6,9 +6,7 @@
 
 <header id="navbarAplikasi" class="navbar-aplikasi sticky top-0 z-30 border-b border-white/60 bg-white/72 backdrop-blur-2xl">
     <div class="mx-auto flex h-20 {{ $kelasLebarNavbar }} items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-4">
-
-        </div>
+        <div class="flex items-center gap-4"></div>
 
         <div class="flex items-center gap-3">
             @auth

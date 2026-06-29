@@ -14,54 +14,56 @@ function jalankanSidebar() {
     const sidebar = document.getElementById("sidebar");
     const konten = document.getElementById("kontenAplikasi");
     const overlay = document.querySelector("[data-sidebar-overlay]");
-    const tombolSidebar = document.querySelectorAll("[data-sidebar-toggle]");
+    const tombolBukaSidebar = document.querySelectorAll("[data-sidebar-open]");
+    const tombolTutupSidebar = document.querySelectorAll(
+        "[data-sidebar-close]",
+    );
     const linkSidebar = document.querySelectorAll("[data-sidebar-link]");
 
-    if (!sidebar || !konten || !overlay || tombolSidebar.length === 0) {
+    if (!sidebar || !konten || !overlay) {
         return;
     }
 
     const isMobile = () => window.innerWidth < 1024;
 
-    const bukaSidebarMobile = () => {
-        sidebar.classList.add("sidebar-aktif");
-        overlay.classList.add("overlay-aktif");
-        document.body.classList.add("overflow-hidden");
+    const bukaSidebar = () => {
+        if (isMobile()) {
+            sidebar.classList.add("sidebar-aktif");
+            overlay.classList.add("overlay-aktif");
+            document.body.classList.add("overflow-hidden");
+            return;
+        }
+
+        sidebar.classList.remove("sidebar-tertutup");
+        konten.classList.remove("konten-sidebar-tertutup");
     };
 
-    const tutupSidebarMobile = () => {
-        sidebar.classList.remove("sidebar-aktif");
-        overlay.classList.remove("overlay-aktif");
-        document.body.classList.remove("overflow-hidden");
+    const tutupSidebar = () => {
+        if (isMobile()) {
+            sidebar.classList.remove("sidebar-aktif");
+            overlay.classList.remove("overlay-aktif");
+            document.body.classList.remove("overflow-hidden");
+            return;
+        }
+
+        sidebar.classList.add("sidebar-tertutup");
+        konten.classList.add("konten-sidebar-tertutup");
     };
 
-    const toggleSidebarDesktop = () => {
-        sidebar.classList.toggle("sidebar-tertutup");
-        konten.classList.toggle("konten-sidebar-tertutup");
-    };
-
-    tombolSidebar.forEach((tombol) => {
-        tombol.addEventListener("click", () => {
-            if (isMobile()) {
-                if (sidebar.classList.contains("sidebar-aktif")) {
-                    tutupSidebarMobile();
-                } else {
-                    bukaSidebarMobile();
-                }
-
-                return;
-            }
-
-            toggleSidebarDesktop();
-        });
+    tombolBukaSidebar.forEach((tombol) => {
+        tombol.addEventListener("click", bukaSidebar);
     });
 
-    overlay.addEventListener("click", tutupSidebarMobile);
+    tombolTutupSidebar.forEach((tombol) => {
+        tombol.addEventListener("click", tutupSidebar);
+    });
+
+    overlay.addEventListener("click", tutupSidebar);
 
     linkSidebar.forEach((link) => {
         link.addEventListener("click", () => {
             if (isMobile()) {
-                tutupSidebarMobile();
+                tutupSidebar();
             }
         });
     });

@@ -1,3 +1,7 @@
+<button type="button" data-sidebar-open class="fixed left-5 top-5 z-30 flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/80 bg-white/90 text-slate-700 shadow-xl shadow-slate-900/10 backdrop-blur-xl transition hover:border-blue-300 hover:text-blue-600 hover:shadow-2xl">
+    <i data-lucide="menu"></i>
+</button>
+
 <div data-sidebar-overlay class="overlay-sidebar fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-sm lg:hidden"></div>
 
 <aside id="sidebar" class="sidebar fixed left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-auto text-white">
@@ -8,11 +12,8 @@
             </span>
         </a>
 
-        <button type="button" data-sidebar-toggle class="rounded-2xl p-2 text-white/70 transition hover:bg-white/10 hover:text-white">
+        <button type="button" data-sidebar-close class="rounded-2xl p-2 text-white/70 transition hover:bg-white/10 hover:text-white">
             <i data-lucide="x"></i>
-        </button>
-        <button type="button" data-sidebar-toggle class="rounded-2xl border border-slate-200/80 bg-white/85 p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 hover:shadow-md">
-            <i data-lucide="menu"></i>
         </button>
     </div>
 

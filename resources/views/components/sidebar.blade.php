@@ -4,13 +4,15 @@
     <div class="relative z-10 flex h-20 shrink-0 items-center justify-between border-b border-white/10 px-5">
         <a href="{{ route('beranda') }}" data-sidebar-link class="flex items-center gap-3">
             <span>
-                <span class="block text-base font-black leading-tight">Jasa AC</span>
-                <span class="block text-xs text-white/55">Bekasi Service Center</span>
+                <span class="block text-base font-black leading-tight">{{ $judul ?? 'Pelayanan Jasa AC' }}</span>
             </span>
         </a>
 
         <button type="button" data-sidebar-toggle class="rounded-2xl p-2 text-white/70 transition hover:bg-white/10 hover:text-white">
             <i data-lucide="x"></i>
+        </button>
+        <button type="button" data-sidebar-toggle class="rounded-2xl border border-slate-200/80 bg-white/85 p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 hover:shadow-md">
+            <i data-lucide="menu"></i>
         </button>
     </div>
 

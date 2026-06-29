@@ -38,12 +38,14 @@
             </form>
 
             <div class="mt-5 grid gap-3">
-                <a href="{{ route('sosial.redirect', 'google') }}" class="rounded-2xl tombol-outline px-5 py-3 text-center font-black">
-                    Login dengan Google
+                <a href="{{ route('sosial.redirect', 'google') }}" class="flex items-center justify-center gap-3 rounded-2xl tombol-outline px-5 py-3 text-center font-black">
+                    <img src="{{ asset('assets/icons/google.png') }}" alt="Google" class="h-6 w-6 object-contain">
+                    <span>Login dengan Google</span>
                 </a>
 
-                <a href="{{ route('sosial.redirect', 'facebook') }}" class="rounded-2xl tombol-outline px-5 py-3 text-center font-black">
-                    Login dengan Facebook
+                <a href="{{ route('sosial.redirect', 'facebook') }}" class="flex items-center justify-center gap-3 rounded-2xl tombol-outline px-5 py-3 text-center font-black">
+                    <img src="{{ asset('assets/icons/facebook.png') }}" alt="Facebook" class="h-6 w-6 object-contain">
+                    <span>Login dengan Facebook</span>
                 </a>
             </div>
 

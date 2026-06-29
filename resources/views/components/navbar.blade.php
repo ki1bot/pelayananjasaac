@@ -7,13 +7,7 @@
 <header id="navbarAplikasi" class="navbar-aplikasi sticky top-0 z-30 border-b border-white/60 bg-white/72 backdrop-blur-2xl">
     <div class="mx-auto flex h-20 {{ $kelasLebarNavbar }} items-center justify-between px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-4">
-            <button type="button" data-sidebar-toggle class="rounded-2xl border border-slate-200/80 bg-white/85 p-3 text-slate-700 shadow-sm transition hover:border-blue-300 hover:text-blue-600 hover:shadow-md">
-                <i data-lucide="menu"></i>
-            </button>
 
-            <div>
-                <h1 class="text-lg font-black text-slate-950">{{ $judul ?? 'Pelayanan Jasa AC' }}</h1>
-            </div>
         </div>
 
         <div class="flex items-center gap-3">

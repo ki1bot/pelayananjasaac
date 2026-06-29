@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AutoLogoutMiddleware;
 use App\Http\Middleware\WajibAdmin;
 use App\Http\Middleware\WajibMasuk;
 use Illuminate\Foundation\Application;
@@ -13,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->web(append: [
+            AutoLogoutMiddleware::class,
+        ]);
+
         $middleware->alias([
             'wajibMasuk' => WajibMasuk::class,
             'wajibAdmin' => WajibAdmin::class,

@@ -21,11 +21,12 @@ class MasukController extends Controller
             'password' => ['required'],
         ]);
 
-        if (! Auth::attempt($data, $request->boolean('remember'))) {
+        if (! Auth::attempt($data)) {
             return back()->with('error', 'Email atau password salah.')->onlyInput('email');
         }
 
         $request->session()->regenerate();
+        $request->session()->put('terakhir_aktif_pada', now()->timestamp);
 
         Keranjang::where('session_id', $request->session()->getId())
             ->update(['pengguna_id' => Auth::id()]);

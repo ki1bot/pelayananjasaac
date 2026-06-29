@@ -47,11 +47,7 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-white/55">Mulai dari</p>
-                                <p class="mt-1 text-5xl font-black">Rp 75K</p>
-                            </div>
-
-                            <div class="flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-600 shadow-xl shadow-blue-600/30">
-                                <i data-lucide="wind"></i>
+                                <p class="mt-1 text-5xl font-black">Rp75.000</p>
                             </div>
                         </div>
 

@@ -4,24 +4,47 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pengguna;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\AbstractProvider;
 
 class SosialController extends Controller
 {
+    private function socialite(string $provider): AbstractProvider
+    {
+        $driver = Socialite::driver($provider);
+
+        $cacert = storage_path('app/certificates/cacert.pem');
+
+        if (file_exists($cacert)) {
+            $driver->setHttpClient(new Client([
+                'verify' => $cacert,
+            ]));
+        }
+
+        return $driver;
+    }
+
     public function redirect(string $provider)
     {
         abort_unless(in_array($provider, ['google', 'facebook']), 404);
 
-        return Socialite::driver($provider)->redirect();
+        return $this->socialite($provider)->redirect();
     }
 
     public function callback(string $provider)
     {
         abort_unless(in_array($provider, ['google', 'facebook']), 404);
 
-        $akun = Socialite::driver($provider)->stateless()->user();
+        $akun = $this->socialite($provider)->stateless()->user();
+
+        if (!$akun->getEmail()) {
+            return redirect()
+                ->route('login')
+                ->with('error', 'Login gagal karena akun tidak memberikan alamat email.');
+        }
 
         $pengguna = Pengguna::updateOrCreate(
             ['email' => $akun->getEmail()],

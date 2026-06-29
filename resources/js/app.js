@@ -175,28 +175,15 @@ function jalankanGrafikProduk() {
     const labels = JSON.parse(dataGrafik.getAttribute("data-labels") || "[]");
     const values = JSON.parse(dataGrafik.getAttribute("data-values") || "[]");
 
-    new Chart(canvas, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Harga Dasar",
-                    data: values,
-                    borderRadius: 16,
-                    borderSkipped: false,
-                    backgroundColor: "rgba(37, 99, 235, 0.42)",
-                    borderColor: "rgba(37, 99, 235, 0.75)",
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
+    const buatOpsiGrafik = () => {
+        const tampilanMobile = window.innerWidth < 768;
+
+        return {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: true,
+                    display: !tampilanMobile,
                     labels: {
                         boxWidth: 14,
                         boxHeight: 14,
@@ -220,6 +207,11 @@ function jalankanGrafikProduk() {
                         display: false,
                     },
                     ticks: {
+                        display: !tampilanMobile,
+                        autoSkip: true,
+                        maxTicksLimit: tampilanMobile ? 3 : 6,
+                        maxRotation: 0,
+                        minRotation: 0,
                         font: {
                             weight: 700,
                         },
@@ -228,6 +220,7 @@ function jalankanGrafikProduk() {
                 y: {
                     beginAtZero: true,
                     ticks: {
+                        maxTicksLimit: tampilanMobile ? 5 : 7,
                         callback: function (value) {
                             return (
                                 "Rp " + Number(value).toLocaleString("id-ID")
@@ -236,6 +229,31 @@ function jalankanGrafikProduk() {
                     },
                 },
             },
+        };
+    };
+
+    const grafikProduk = new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Harga Dasar",
+                    data: values,
+                    borderRadius: 16,
+                    borderSkipped: false,
+                    backgroundColor: "rgba(37, 99, 235, 0.42)",
+                    borderColor: "rgba(37, 99, 235, 0.75)",
+                    borderWidth: 1,
+                },
+            ],
         },
+        options: buatOpsiGrafik(),
+    });
+
+    window.addEventListener("resize", () => {
+        grafikProduk.options = buatOpsiGrafik();
+        grafikProduk.resize();
+        grafikProduk.update();
     });
 }

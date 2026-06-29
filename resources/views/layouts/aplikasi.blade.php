@@ -9,19 +9,19 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/logoKibot.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans">
+<body class="min-h-screen w-full overflow-x-hidden font-sans">
     @include('components.sidebar')
 
-    <div id="kontenAplikasi" class="konten-aplikasi">
+    <div id="kontenAplikasi" class="konten-aplikasi w-full min-w-0 max-w-full overflow-x-hidden">
         @include('components.navbar')
 
         @php
             $kelasLebarKonten = ($lebar ?? 'normal') === 'penuh'
-                ? 'max-w-[1700px]'
-                : 'max-w-7xl';
+                ? 'max-w-full lg:max-w-[1700px]'
+                : 'max-w-full lg:max-w-7xl';
         @endphp
 
-        <main class="mx-auto min-h-[calc(100vh-10rem)] {{ $kelasLebarKonten }} px-4 py-6 sm:px-6 lg:px-8">
+        <main class="mx-auto min-h-[calc(100vh-10rem)] w-full min-w-0 {{ $kelasLebarKonten }} overflow-x-hidden px-3 py-5 sm:px-6 sm:py-6 lg:px-8">
             @if(session('success'))
                 <div class="animasi-masuk mb-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-bold text-green-700">
                     {{ session('success') }}
@@ -42,7 +42,7 @@
                 </div>
             @endif
 
-            <div class="animasi-masuk">
+            <div class="animasi-masuk w-full min-w-0 max-w-full overflow-x-hidden">
                 @yield('konten')
             </div>
         </main>

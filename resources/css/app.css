@@ -166,20 +166,15 @@ body::after {
 .kartu-gelap {
     position: relative;
     overflow: hidden;
-    color: white;
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(37, 99, 235, 0.6),
-            transparent 14rem
-        ),
-        radial-gradient(
-            circle at bottom left,
-            rgba(14, 165, 233, 0.22),
-            transparent 15rem
-        ),
-        linear-gradient(145deg, #020617, #0f172a 55%, #111827);
-    box-shadow: 0 30px 90px rgba(15, 23, 42, 0.32);
+    color: var(--teks);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.92),
+        rgba(255, 255, 255, 0.72)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: var(--shadow-lembut);
+    backdrop-filter: blur(22px);
 }
 
 .kartu-gelap::after {
@@ -189,7 +184,7 @@ body::after {
     width: 190px;
     height: 190px;
     border-radius: 999px;
-    background: rgba(96, 165, 250, 0.18);
+    background: rgba(37, 99, 235, 0.1);
     filter: blur(35px);
 }
 
@@ -707,5 +702,57 @@ body::after {
 
     .h-\[340px\] {
         height: 320px !important;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+#kontenAplikasi,
+main,
+section {
+    min-width: 0;
+    max-width: 100%;
+}
+
+canvas {
+    max-width: 100% !important;
+}
+
+@media (max-width: 767px) {
+    #kontenAplikasi {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: clip;
+    }
+
+    main {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: clip;
+    }
+
+    .kartu,
+    .kartu-gelap {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #grafikProduk {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+    }
+
+    [data-profile-menu] {
+        right: 1rem !important;
+        left: 1rem !important;
+        width: auto !important;
+        max-width: calc(100vw - 2rem) !important;
     }
 }

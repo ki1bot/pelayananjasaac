@@ -116,51 +116,6 @@ Metode pembayaran yang tersedia di halaman pembayaran:
 - Laravel Pail
 - Concurrently
 
-## Struktur Project
-
-```text
-app/
-├── Http/
-│   ├── Controllers/
-│   │   ├── Admin/
-│   │   │   └── PesananAdminController.php
-│   │   ├── Auth/
-│   │   │   ├── DaftarController.php
-│   │   │   ├── MasukController.php
-│   │   │   ├── ProfilController.php
-│   │   │   └── SosialController.php
-│   │   └── Pages/
-│   │       ├── BerandaController.php
-│   │       ├── LayananController.php
-│   │       ├── PembayaranController.php
-│   │       └── PesananController.php
-│   └── Middleware/
-├── Models/
-│   ├── DetailPesanan.php
-│   ├── Layanan.php
-│   ├── LokasiLayanan.php
-│   ├── MerkAc.php
-│   ├── Pembayaran.php
-│   ├── Pengguna.php
-│   ├── Pesanan.php
-│   └── TarifJarakLayanan.php
-
-database/
-├── migrations/
-└── seeders/
-    └── DatabaseSeeder.php
-
-resources/
-├── css/
-│   └── app.css
-├── js/
-│   └── app.js
-└── views/
-
-routes/
-└── web.php
-```
-
 ## Alur Sistem
 
 1. Pelanggan membuka halaman beranda atau halaman layanan.
@@ -227,62 +182,6 @@ Install dependency frontend:
 npm install
 ```
 
-Buat file `.env`:
-
-```bash
-cp .env.example .env
-```
-
-Jika file `.env.example` tidak tersedia di repository lokal, buat file `.env` secara manual di root project, lalu isi konfigurasi dasar seperti berikut:
-
-```env
-APP_NAME="Pelayanan Jasa AC"
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=http://127.0.0.1:8000
-
-APP_LOCALE=en
-APP_FALLBACK_LOCALE=en
-APP_FAKER_LOCALE=en_US
-
-LOG_CHANNEL=stack
-LOG_LEVEL=debug
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=pelayananjasaac
-DB_USERNAME=root
-DB_PASSWORD=
-
-SESSION_DRIVER=database
-SESSION_LIFETIME=120
-
-CACHE_STORE=database
-QUEUE_CONNECTION=database
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/auth/google/callback
-
-FACEBOOK_CLIENT_ID=
-FACEBOOK_CLIENT_SECRET=
-FACEBOOK_REDIRECT_URI=http://127.0.0.1:8000/auth/facebook/callback
-```
-
-Generate application key:
-
-```bash
-php artisan key:generate
-```
-
-Buat database MySQL:
-
-```sql
-CREATE DATABASE pelayananjasaac;
-```
-
 Jalankan migrasi dan seeder:
 
 ```bash
@@ -306,128 +205,6 @@ Akses project di browser:
 ```text
 http://127.0.0.1:8000
 ```
-
-## Menjalankan Project dengan Composer Script
-
-Project ini juga menyediakan script development dari Composer.
-
-```bash
-composer run dev
-```
-
-Script tersebut menjalankan Laravel server, queue listener, Laravel Pail, dan Vite secara bersamaan menggunakan `concurrently`.
-
-## Build Asset Frontend
-
-Untuk membuat asset production:
-
-```bash
-npm run build
-```
-
-Hasil build Vite akan dibuat di:
-
-```text
-public/build
-```
-
-Folder tersebut harus ikut tersedia ketika project dideploy ke hosting production.
-
-## Konfigurasi Login Google dan Facebook
-
-Project ini menggunakan Laravel Socialite untuk login Google dan Facebook.
-
-Tambahkan konfigurasi berikut pada file `.env`:
-
-```env
-GOOGLE_CLIENT_ID=client_id_google
-GOOGLE_CLIENT_SECRET=client_secret_google
-GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/auth/google/callback
-
-FACEBOOK_CLIENT_ID=client_id_facebook
-FACEBOOK_CLIENT_SECRET=client_secret_facebook
-FACEBOOK_REDIRECT_URI=http://127.0.0.1:8000/auth/facebook/callback
-```
-
-Untuk production, ubah redirect URI menjadi domain production:
-
-```env
-GOOGLE_REDIRECT_URI=https://pelayananjasaac.rf.gd/auth/google/callback
-FACEBOOK_REDIRECT_URI=https://pelayananjasaac.rf.gd/auth/facebook/callback
-```
-
-## Deployment ke Shared Hosting
-
-Untuk deployment ke shared hosting seperti InfinityFree, pastikan environment production sudah disesuaikan.
-
-Contoh konfigurasi penting pada `.env`:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://pelayananjasaac.rf.gd
-
-DB_CONNECTION=mysql
-DB_HOST=host_database
-DB_PORT=3306
-DB_DATABASE=nama_database
-DB_USERNAME=username_database
-DB_PASSWORD=password_database
-
-GOOGLE_REDIRECT_URI=https://pelayananjasaac.rf.gd/auth/google/callback
-FACEBOOK_REDIRECT_URI=https://pelayananjasaac.rf.gd/auth/facebook/callback
-```
-
-Sebelum upload ke hosting, jalankan perintah berikut di lokal:
-
-```bash
-composer install --no-dev --optimize-autoloader
-npm install
-npm run build
-php artisan config:clear
-php artisan route:clear
-php artisan view:clear
-```
-
-Pastikan folder dan file berikut ikut terupload:
-
-```text
-app
-bootstrap
-config
-database
-public
-resources
-routes
-storage
-vendor
-.env
-artisan
-composer.json
-composer.lock
-package.json
-package-lock.json
-vite.config.js
-```
-
-Pastikan juga hasil build Vite tersedia pada:
-
-```text
-public/build
-```
-
-Jika project Laravel diupload langsung ke folder `htdocs`, arahkan request ke folder `public` menggunakan file `.htaccess` di root `htdocs`:
-
-```apache
-Options -Indexes
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^(?!public/)(.*)$ public/$1 [L]
-</IfModule>
-```
-
-Konfigurasi yang lebih aman adalah meletakkan seluruh folder Laravel di luar `htdocs`, lalu hanya isi folder `public` yang diarahkan sebagai document root. Namun pada shared hosting gratis, akses document root biasanya terbatas, sehingga konfigurasi `.htaccess` sering diperlukan.
 
 ## Perintah Artisan yang Sering Digunakan
 
@@ -454,15 +231,6 @@ Atau melalui Composer:
 ```bash
 composer run test
 ```
-
-## Catatan Penting
-
-- File `.env` tidak boleh dipush ke repository karena berisi konfigurasi sensitif.
-- Pastikan database sudah dibuat sebelum menjalankan migrasi.
-- Jalankan `npm run build` sebelum deploy agar asset Tailwind CSS dan JavaScript tersedia di `public/build`.
-- Jika tampilan Tailwind CSS tidak muncul di hosting, periksa kembali folder `public/build` dan path asset Vite di halaman Blade.
-- Login Google dan Facebook hanya berjalan jika client ID, client secret, dan redirect URI sudah sesuai dengan domain yang digunakan.
-- Admin hanya bisa mengelola pesanan yang statusnya bukan `draft`.
 
 ## Author
 

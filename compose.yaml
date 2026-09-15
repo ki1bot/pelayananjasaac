@@ -1,0 +1,57 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                UID: 1000
+                GID: 1000
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+        ports:
+            - "8000:8000"
+        depends_on:
+            mysql:
+                condition: service_healthy
+        command: php artisan serve --host=0.0.0.0 --port=8000
+
+    node:
+        image: node:24-bookworm-slim
+        user: "1000:1000"
+        working_dir: /var/www
+        volumes:
+            - .:/var/www
+        ports:
+            - "5173:5173"
+        command: npm run dev -- --host 0.0.0.0
+
+    mysql:
+        image: mysql:8.4
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - "3307:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test:
+                [
+                    "CMD",
+                    "mysqladmin",
+                    "ping",
+                    "-h",
+                    "127.0.0.1",
+                    "-uroot",
+                    "-proot",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+
+volumes:
+    mysql_data:
